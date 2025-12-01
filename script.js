@@ -77,3 +77,26 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(err => console.error("Error cargando héroes:", err));
 });
+//--------------------------------------------------------------------------
+//Api de yotube para los videos de dota 2
+
+const API_KEY = "AIzaSyBB8MajhXbj_d6f5rvI7x7hs4onHGzozMc";
+const query = "Dota 2";
+const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&maxResults=6&key=${API_KEY}`;
+
+fetch(url)
+  .then(res => res.json())
+  .then(data => {
+    const container = document.getElementById("videos-container");
+    data.items.forEach(video => {
+      const videoDiv = document.createElement("div");
+      videoDiv.classList.add("video-card");
+      videoDiv.innerHTML = `
+        <a href="https://www.youtube.com/watch?v=${video.id.videoId}" target="_blank">
+          <img src="${video.snippet.thumbnails.medium.url}" alt="${video.snippet.title}">
+          <h4>${video.snippet.title}</h4>
+        </a>
+      `;
+      container.appendChild(videoDiv);
+    });
+  });

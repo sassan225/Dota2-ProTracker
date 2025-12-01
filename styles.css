@@ -125,11 +125,40 @@ button.next { right: 10px; }
   border-radius: 8px;
 }
 footer {
-  background-color: #2c2c2c; /* mismo color que tu menú */
+  background-color: #2c2c2c; /**/
   color: #f1faee;
   text-align: center;
   padding: 15px 0;
   margin-top: 30px; /* separa un poco del contenido */
-  border-top: 2px solid #e63946; /* opcional, línea superior */
+  border-top: 2px solid #e63946; /**/
   font-size: 14px;
+}
+.videos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.video-card {
+  width: 300px;
+  background-color: #2c2c2c;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.video-card:hover {
+  transform: scale(1.05);
+}
+
+.video-card img {
+  width: 100%;
+}
+
+.video-card h4 {
+  color: #f1faee;
+  font-size: 14px;
+  margin: 5px;
 }
