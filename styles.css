@@ -39,6 +39,15 @@ main {
   display: none;
 }
 
+.parrafo-container {
+  display: flex;
+  justify-content: center; /* centra horizontal */
+  align-items: center;     /* centra vertical */
+  margin: 20px 0;
+}
+
+
+
 /* Logo */
 .logo-container {
   text-align: center;
