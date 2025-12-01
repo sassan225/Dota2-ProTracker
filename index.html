@@ -4,16 +4,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dota 2 ProTracker</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Dota 2 ProTracker</h1>
 
-  <input type="text" id="player-input" placeholder="Ingresa nickname">
-  <button id="search-btn">Buscar</button>
+  <!-- Menú superior -->
+  <nav class="top-menu">
+    <ul>
+      <li class="active">Home</li>
+      <li>Meta</li>
+      <li>Héroes</li>
+      <li>Jugadores</li>
+    </ul>
+  </nav>
 
-  <div id="player-info"></div>
-  <div id="recent-matches"></div>
+  <!-- Contenido principal -->
+  <main>
+    <section id="home">
+      <h1>Bienvenido a Dota 2 ProTracker</h1>
+      <p>Busca jugadores, estadísticas y sigue la meta actual.</p>
+    </section>
+
+    <section id="meta" class="hidden">
+      <h1>Meta actual</h1>
+      <p>Aquí se mostrarán estadísticas de héroes y estrategias.</p>
+    </section>
+
+    <section id="heroes" class="hidden">
+      <h1>Héroes</h1>
+      <p>Estadísticas y winrate por héroe.</p>
+    </section>
+
+    <section id="players" class="hidden">
+      <h1>Jugadores</h1>
+      <p>ProTracker de jugadores.</p>
+    </section>
+  </main>
 
   <script src="script.js"></script>
 </body>
