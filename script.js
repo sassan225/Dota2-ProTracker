@@ -4,11 +4,9 @@ const sections = document.querySelectorAll("main section");
 
 tabs.forEach((tab, idx) => {
   tab.addEventListener("click", () => {
-    // Cambiar pestaña activa
     tabs.forEach(t => t.classList.remove("active"));
     tab.classList.add("active");
 
-    // Mostrar sección correspondiente
     sections.forEach(s => s.classList.add("hidden"));
     sections[idx].classList.remove("hidden");
   });
@@ -22,12 +20,11 @@ let index = 0;
 
 function moveCarousel() {
   const slides = carouselTrack.children;
-  if(!slides.length) return;
-  const width = slides[0].offsetWidth + 10; // ancho + margen
+  if (!slides.length) return;
+  const width = slides[0].offsetWidth + 10;
   carouselTrack.style.transform = `translateX(-${index * width}px)`;
 }
 
-// Botones
 nextBtn.addEventListener("click", () => {
   const slides = carouselTrack.children;
   index = (index + 1) % slides.length;
@@ -40,9 +37,43 @@ prevBtn.addEventListener("click", () => {
   moveCarousel();
 });
 
-// Auto-slide cada 3 segundos
+// Auto-slide
 setInterval(() => {
   const slides = carouselTrack.children;
   index = (index + 1) % slides.length;
   moveCarousel();
 }, 3000);
+// fin del carrusel del home //
+
+
+//----------------------------------------------------------------------//
+
+// --- Estadísticas debajo del carrusel ---
+document.addEventListener("DOMContentLoaded", () => {
+  const statsContainer = document.getElementById('stats-container');
+
+  fetch('https://api.opendota.com/api/heroStats')
+    .then(res => res.json())
+    .then(data => {
+      const topHeroes = data.slice(0, 10); // primeros 10 héroes
+
+  topHeroes.forEach(hero => {
+  const heroId = hero.name.replace('npc_dota_hero_', '');
+  const winrate = hero.pro_pick ? (hero.pro_win / hero.pro_pick * 100) : 0;
+  const pickrate = hero.pro_pick ? (hero.pro_pick / data.reduce((sum, h) => sum + h.pro_pick, 0) * 100) : 0;
+
+  const heroCard = document.createElement('div');
+  heroCard.classList.add('hero-stat');
+  heroCard.innerHTML = `
+    <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/heroes/${heroId}_full.png" alt="${hero.localized_name}">
+    <h3>${hero.localized_name}</h3>
+    <p>Winrate: ${winrate.toFixed(2)}%</p>
+    <p>Pickrate: ${pickrate.toFixed(2)}%</p>
+  `;
+  statsContainer.appendChild(heroCard);
+});
+
+
+    })
+    .catch(err => console.error("Error cargando héroes:", err));
+});
