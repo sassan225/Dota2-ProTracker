@@ -1,29 +1,20 @@
-/* Paleta de colores profesional: negro oscuro + rojo + azul */
-:root {
-  --primary-black: #1b1b1b;
-  --secondary-black: #2c2c2c;
-  --red: #e63946;
-  --blue: #457b9d;
-  --white: #f1faee;
-}
-
+/* Colores y tipografía */
 body {
   margin: 0;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background-color: var(--primary-black);
-  color: var(--white);
+  font-family: Arial, sans-serif;
+  background: #1b1b1b;
+  color: #f1faee;
 }
 
 .top-menu {
-  background-color: var(--secondary-black);
+  background: #2c2c2c;
   padding: 10px 20px;
 }
 
 .top-menu ul {
-  list-style: none;
   display: flex;
-  justify-content: flex-start;
   gap: 20px;
+  list-style: none;
   margin: 0;
   padding: 0;
 }
@@ -32,12 +23,12 @@ body {
   cursor: pointer;
   padding: 8px 16px;
   border-radius: 5px;
-  transition: background 0.3s;
+  transition: 0.3s;
 }
 
 .top-menu li.active,
 .top-menu li:hover {
-  background-color: var(--red);
+  background: #e63946;
 }
 
 main {
@@ -47,3 +38,55 @@ main {
 .hidden {
   display: none;
 }
+
+/* Logo */
+.logo-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.logo-container img {
+  width: 200px;
+  border-radius: 10px;
+}
+
+/* Carrusel horizontal */
+.carousel {
+  position: relative;
+  width: 90%;
+  margin: 20px auto;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 2px solid #e63946;
+  background-color: #2c2c2c;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-track img {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 5px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+button.prev,
+button.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 18px;
+}
+
+button.prev { left: 10px; }
+button.next { right: 10px; }

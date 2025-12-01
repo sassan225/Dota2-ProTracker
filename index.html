@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dota 2 ProTracker</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="logos/logodota.jpg" type="image/jpeg">
+
 </head>
 <body>
 
@@ -18,23 +20,50 @@
     </ul>
   </nav>
 
-  <!-- Contenido principal -->
   <main>
+    <!-- HOME -->
     <section id="home">
       <h1>Bienvenido a Dota 2 ProTracker</h1>
       <p>Busca jugadores, estadísticas y sigue la meta actual.</p>
+
+      <div class="logo-container">
+        <img src="logos/logodota.jpg" alt="Logo Dota">
+      </div>
+
+      <!-- Carrusel horizontal -->
+      <div class="carousel">
+        <div class="carousel-track">
+          <img src="imagenes/invokerFondo.png" alt="Invoker">
+          <img src="imagenes/linaArcanaFondo.jpg" alt="Lina Arcana">
+          <img src="imagenes/crystalMaidenPersonaFondo.jpg" alt="crystal maiden">
+        <img src="imagenes/terrorbladeFondo.jpg" alt="terrorbladeFondo">
+        <img src="imagenes/windDrangerFondo.jpg" alt="windDrangerFondo">
+        <img src="imagenes/shadowfiendFondo.jpg" alt="shadowfiendFondo">
+         <img src="imagenes/spectreArcanaFondo.jpg" alt="spectreArcanaFondo">
+          <img src="imagenes/phantomAssasinFondo.jpg" alt="phantomAssasinFondo">
+           <img src="imagenes/muertaFondo.jpg" alt="muertaFondo">
+
+        </div>
+        <button class="prev">◀</button>
+        <button class="next">▶</button>
+      </div>
+
+      <p>¡Explora los héroes y sus fondos!</p>
     </section>
 
+    <!-- META -->
     <section id="meta" class="hidden">
       <h1>Meta actual</h1>
       <p>Aquí se mostrarán estadísticas de héroes y estrategias.</p>
     </section>
 
+    <!-- HEROES -->
     <section id="heroes" class="hidden">
       <h1>Héroes</h1>
       <p>Estadísticas y winrate por héroe.</p>
     </section>
 
+    <!-- PLAYERS -->
     <section id="players" class="hidden">
       <h1>Jugadores</h1>
       <p>ProTracker de jugadores.</p>
