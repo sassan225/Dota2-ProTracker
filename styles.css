@@ -124,3 +124,12 @@ button.next { right: 10px; }
   width: 100%;
   border-radius: 8px;
 }
+footer {
+  background-color: #2c2c2c; /* mismo color que tu menú */
+  color: #f1faee;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 30px; /* separa un poco del contenido */
+  border-top: 2px solid #e63946; /* opcional, línea superior */
+  font-size: 14px;
+}
