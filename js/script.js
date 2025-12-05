@@ -194,3 +194,40 @@ document.addEventListener("DOMContentLoaded", function() {
     newsContainer.appendChild(card);
   });
 });
+//---------------- script PARA LA API DE JUGADORES DE DOTA 2
+// --------------------- RANKING DE JUGADORES (OpenDota Leaderboard) ---------------------
+const STRATZ_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJTdWJqZWN0IjoiOWVlMmYyNTUtMDcwYi00NGYxLThhMzAtYmFjZWI1YTYzNDczIiwiU3RlYW1JZCI6IjEwNjEzNzUyMTkiLCJBUElVc2VyIjoidHJ1ZSIsIm5iZiI6MTc2NDkzODk3MiwiZXhwIjoxNzk2NDc0OTcyLCJpYXQiOjE3NjQ5Mzg5NzIsImlzcyI6Imh0dHBzOi8vYXBpLnN0cmF0ei5jb20ifQ.p1J4cdJvUBbDhtIdiSodxHxli_BFXSUKMpZmWF7eQLM";  
+fetch("https://api.stratz.com/api/v1/rankings/leaders", {
+  headers: {
+    "Authorization": `Bearer ${STRATZ_KEY}`
+  }
+})
+  .then(res => res.json())
+  .then(data => {
+    console.log(data);
+
+    if (!data.entries || !Array.isArray(data.entries)) {
+      console.error("Respuesta inesperada:", data);
+      return;
+    }
+
+    let top = data.entries.slice(0, 10); // Top 10
+    let container = document.getElementById("ranking-container");
+
+    top.forEach(p => {
+      let row = document.createElement("div");
+      row.classList.add("ranking-row");
+
+      row.innerHTML = `
+        <div class="col">${p.name || "Unknown"}</div>
+        <div class="col">${p.rankLeaderboardRank || "-"}</div>
+        <div class="col">${p.rating || "-"}</div>
+        <div class="col">${(p.winRate * 100).toFixed(1)}%</div>
+        <div class="col">${p.matchCount}</div>
+      `;
+
+      container.appendChild(row);
+    });
+
+  })
+  .catch(err => console.error("Error cargando ranking:", err));

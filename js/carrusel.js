@@ -1,4 +1,6 @@
-export function initCarrusel() {
+
+
+/*export function initCarrusel() {
   var track = document.querySelector(".carousel-track");
   var slides = Array.prototype.slice.call(track.children);
   var prevBtn = document.querySelector(".prev");

@@ -7,6 +7,75 @@ html, body {
   color: #f1faee;
 }
 
+.top-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2c2c2c;
+  padding: 10px 20px;
+  gap: 10px;
+}
+
+.menu-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.menu-left ul {
+  display: flex;
+  gap: 15px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-left li {
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.menu-left li.active,
+.menu-left li:hover {
+  background: #e63946;
+}
+
+.menu-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-grow: 1; /* ocupa todo el espacio restante */
+}
+
+#player-search {
+  flex-grow: 1; /* ocupa todo el espacio disponible dentro de menu-right */
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  font-size: 14px;
+}
+
+#search-btn {
+  padding: 8px 12px;
+  border-radius: 5px;
+  background: #e63946;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.login-btn, .signup-btn {
+  padding: 8px 12px;
+  border-radius: 5px;
+  background: #1b1b1b;
+  color: #f1faee;
+  border: 1px solid #e63946;
+  cursor: pointer;
+}
+
+
 .wrapper {
   min-height: 100%;
   display: flex;
@@ -257,4 +326,34 @@ footer {
 .news-card a {
   color: #f1faee;
   text-decoration: underline;
+}
+/*ESTILS PARA TOP JUGADORS DE DOTA 2*/
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto; /* empuja al lado derecho */
+}
+
+.header-actions input {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #e63946;
+  background-color: #1b1b1b;
+  color: #f1faee;
+}
+
+.header-actions button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #e63946;
+  color: #f1faee;
+  transition: 0.3s;
+}
+
+.header-actions button:hover {
+  background-color: #d62828;
 }
