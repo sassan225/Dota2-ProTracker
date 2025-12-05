@@ -10,47 +10,38 @@
 <body>
   <div class="wrapper">
 
-<!-- Menú superior -->
-<nav class="top-menu">
-  <div class="menu-left">
-    
-    <ul>
-      <li class="active">Home</li>
-      <li>Meta</li>
-      <li>Héroes</li>
-      <li>Jugadores</li>
-    </ul>
-  </div>
-
-  <div class="menu-right">
-    <input type="text" id="player-search" placeholder="Buscar jugador Steam...">
-    <button id="search-btn">Buscar</button>
-    <button class="login-btn">Log In</button>
-    <button class="signup-btn">Sign Up</button>
-  </div>
-</nav>
-
+    <!-- Menú superior -->
+    <nav class="top-menu">
+      <div class="menu-left">
+        <ul>
+          <li class="active">Home</li>
+          <li>Meta</li>
+          <li>Héroes</li>
+          <li>Jugadores</li>
+        </ul>
+      </div>
+      <div class="menu-right">
+        <input type="text" id="player-search" placeholder="Buscar jugador Steam...">
+        <button id="search-btn">Buscar</button>
+        <button class="login-btn">Log In</button>
+        <button class="signup-btn">Sign Up</button>
+      </div>
+    </nav>
 
     <main>
-<section id="home">
-  <!-- CARRUSEL DE FRASES -->
+      <!-- HOME -->
+      <section id="home">
+        <!-- Carrusel de frases -->
+        <div id="text-carousel">
+          <div class="text-slide active">«Una obra maestra de los multijugadores modernos»</div>
+          <div class="text-slide">«Estrategia, trabajo en equipo y habilidades épicas»</div>
+          <div class="text-slide">«Cada héroe tiene su momento para brillar»</div>
+        </div>
 
- <div id="text-carousel">
-  <div class="text-slide active">«Una obra maestra de los multijugadores modernos»</div>
-  <div class="text-slide">«Estrategia, trabajo en equipo y habilidades épicas»</div>
-  <div class="text-slide">«Cada héroe tiene su momento para brillar»</div>
-</div>
+        <h1>Bienvenido a Dota 2 ProTracker</h1>
+        <p>Busca jugadores, estadísticas y sigue la meta actual.</p>
 
-
-  <h1>Bienvenido a Dota 2 ProTracker</h1>
-  <p>Busca jugadores, estadísticas y sigue la meta actual.</p>
-
-  <!-- Carrusel de imágenes sigue igual -->
-  ...
-</section>
-
-
-        <!-- Carrusel horizontal -->
+        <!-- Carrusel horizontal de héroes -->
         <div class="carousel">
           <div class="carousel-track">
             <img src="/imagenes/invokerFondo.png" alt="Invoker">
@@ -71,30 +62,25 @@
           <p id="parrafoHome">¡Explora los héroes y sus estadísticas!</p>
         </div>
 
-        <!-- Estadísticas debajo del carrusel -->
+        <!-- Estadísticas héroes -->
         <div id="estadisticas">
           <h2>Estadísticas en Tiempo Real</h2>
-          <div id="stats-container">
-            <!-- Tarjetas de héroes se llenarán por JS -->
+          <div id="stats-container"></div>
+        </div>
+
+        <!-- Noticias -->
+        <div id="news">
+          <h2>Noticias y Parches Recientes</h2>
+          <div id="news-container" class="news-grid"></div>
+        </div>
+
+        <!-- Ranking jugadores -->
+        <div id="player-ranking">
+          <h2>🏆 Top Jugadores del Mundo (Ranking Real)</h2>
+          <div id="players-container" class="players-grid">
+            <p>Cargando jugadores...</p>
           </div>
         </div>
-        <!-- Noticias / Parches Recientes -->
-    <section id="news">
-  <h2>Noticias y Parches Recientes</h2>
-  <div id="news-container" class="news-grid">
-    <!-- Las noticias se llenarán por JS -->
-  </div>
-  <section id="player-ranking">
-  <h2>🏆 Top Jugadores del Mundo (Ranking Real)</h2>
-
-  <div id="players-container" class="players-grid">
-    <p>Cargando jugadores...</p>
-  </div>
-</section>
-
-</section>
-
-
       </section>
 
       <!-- META -->
@@ -115,17 +101,13 @@
         <p>ProTracker de jugadores.</p>
       </section>
     </main>
-
   </div> <!-- end wrapper -->
 
+  <!-- Sección videos -->
   <section id="videos">
     <h2><span>Videos relacionados de Dota 2</span></h2>
-    <div id="videos-container" class="videos-grid">
-      <!-- Los videos se llenarán con JS -->
-    </div>
+    <div id="videos-container" class="videos-grid"></div>
   </section>
-
-  
 
   <footer>
     <p>© 2025 Dota 2 ProTracker. Todos los derechos reservados.</p>
