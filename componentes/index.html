@@ -5,94 +5,90 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dota 2 ProTracker</title>
   <link rel="stylesheet" href="/css/styles.css">
-  <link rel="icon" href="logos/logodota.jpg" type="image/jpeg">
+  <link rel="icon" href="/logos/logodota.jpg" type="image/jpeg">
 </head>
 <body>
+  <div class="wrapper">
 
-  <!-- Menú superior -->
-  <nav class="top-menu">
-    <ul>
-      <li class="active">Home</li>
-      <li>Meta</li>
-      <li>Héroes</li>
-      <li>Jugadores</li>
-    </ul>
-  </nav>
+    <!-- Menú superior -->
+    <nav class="top-menu">
+      <ul>
+        <li class="active">Home</li>
+        <li>Meta</li>
+        <li>Héroes</li>
+        <li>Jugadores</li>
+      </ul>
+    </nav>
 
-  <main>
-    <!-- HOME -->
-    <section id="home">
-      <h1>Bienvenido a Dota 2 ProTracker</h1>
-      <p>Busca jugadores, estadísticas y sigue la meta actual.</p>
+    <main>
+      <!-- HOME -->
+      <section id="home">
+        <h1>Bienvenido a Dota 2 ProTracker</h1>
+        <p>Busca jugadores, estadísticas y sigue la meta actual.</p>
 
-      <div class="logo-container">
-        <img src="/logos/logodota.jpg" alt="Logo Dota">
-      </div>
-
-      <!-- Carrusel horizontal -->
-      <div class="carousel">
-        <div class="carousel-track">
-          <img src="/imagenes/invokerFondo.png" alt="Invoker">
-          <img src="/imagenes/linaArcanaFondo.jpg" alt="Lina Arcana">
-          <img src="/imagenes/crystalMaidenPersonaFondo.jpg" alt="Crystal Maiden">
-          <img src="/imagenes/terrorbladeFondo.jpg" alt="Terrorblade">
-          <img src="/imagenes/windDrangerFondo.jpg" alt="Windranger">
-          <img src="/imagenes/shadowfiendFondo.jpg" alt="Shadowfiend">
-          <img src="/imagenes/spectreArcanaFondo.jpg" alt="Spectre Arcana">
-          <img src="/imagenes/phantomAssasinFondo.jpg" alt="Phantom Assassin">
-          <img src="/imagenes/muertaFondo.jpg" alt="Muerta">
+        <!-- Carrusel horizontal -->
+        <div class="carousel">
+          <div class="carousel-track">
+            <img src="/imagenes/invokerFondo.png" alt="Invoker">
+            <img src="/imagenes/linaArcanaFondo.jpg" alt="Lina Arcana">
+            <img src="/imagenes/crystalMaidenPersonaFondo.jpg" alt="Crystal Maiden">
+            <img src="/imagenes/terrorbladeFondo.jpg" alt="Terrorblade">
+            <img src="/imagenes/windDrangerFondo.jpg" alt="Windranger">
+            <img src="/imagenes/shadowfiendFondo.jpg" alt="Shadowfiend">
+            <img src="/imagenes/spectreArcanaFondo.jpg" alt="Spectre Arcana">
+            <img src="/imagenes/phantomAssasinFondo.jpg" alt="Phantom Assassin">
+            <img src="/imagenes/muertaFondo.jpg" alt="Muerta">
+          </div>
+          <button class="prev">◀</button>
+          <button class="next">▶</button>
         </div>
-        <button class="prev">◀</button>
-        <button class="next">▶</button>
-      </div>
 
-      <div class="parrafo-container">
-  <p id="parrafoHome">¡Explora los héroes y sus estadisticas!!</p>
-    </div>
-
-      <!-- Estadísticas debajo del carrusel -->
-      <div id="estadisticas">
-        <h2>Estadísticas en Tiempo Real</h2>
-        <div id="stats-container">
-          <!-- Tarjetas de héroes se llenarán por JS -->
+        <div class="parrafo-container">
+          <p id="parrafoHome">¡Explora los héroes y sus estadísticas!</p>
         </div>
-      </div>
 
-    </section>
+        <!-- Estadísticas debajo del carrusel -->
+        <div id="estadisticas">
+          <h2>Estadísticas en Tiempo Real</h2>
+          <div id="stats-container">
+            <!-- Tarjetas de héroes se llenarán por JS -->
+          </div>
+        </div>
 
-    <!-- META -->
-    <section id="meta" class="hidden">
-      <h1>Meta actual</h1>
-      <p>Aquí se mostrarán estadísticas de héroes y estrategias.</p>
-    </section>
+      </section>
 
-    <!-- HEROES -->
-    <section id="heroes" class="hidden">
-      <h1>Héroes</h1>
-      <p>Estadísticas y winrate por héroe.</p>
-    </section>
+      <!-- META -->
+      <section id="meta" class="hidden">
+        <h1>Meta actual</h1>
+        <p>Aquí se mostrarán estadísticas de héroes y estrategias.</p>
+      </section>
 
-    <!-- PLAYERS -->
-    <section id="players" class="hidden">
-      <h1>Jugadores</h1>
-      <p>ProTracker de jugadores.</p>
-    </section>
-  </main>
+      <!-- HEROES -->
+      <section id="heroes" class="hidden">
+        <h1>Héroes</h1>
+        <p>Estadísticas y winrate por héroe.</p>
+      </section>
+
+      <!-- PLAYERS -->
+      <section id="players" class="hidden">
+        <h1>Jugadores</h1>
+        <p>ProTracker de jugadores.</p>
+      </section>
+    </main>
+
+  </div> <!-- end wrapper -->
 
   <section id="videos">
-  <h2>Videos relacionados de Dota 2</h2>
-  <div id="videos-container" class="videos-grid">
-    <!-- Los videos se llenarán con JS -->
-  </div>
-</section>
-
+    <h2>Videos relacionados de Dota 2</h2>
+    <div id="videos-container" class="videos-grid">
+      <!-- Los videos se llenarán con JS -->
+    </div>
+  </section>
 
   <footer>
-  <p>© 2025 Dota 2 ProTracker. Todos los derechos reservados.</p>
-</footer>
+    <p>© 2025 Dota 2 ProTracker. Todos los derechos reservados.</p>
+  </footer>
 
-
-  <script type="module" src="/js/script.js"></script>
-  
+  <script src="/js/script.js"></script>
 </body>
 </html>

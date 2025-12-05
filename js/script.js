@@ -1,76 +1,124 @@
-import './carrusel.js'
-import { initCarrusel } from './carrusel.js';
-initCarrusel();
+// --------------------- CARRUSEL INFINITO ---------------------
+var track = document.querySelector(".carousel-track");
+var slides = Array.prototype.slice.call(track.children);
+var prevBtn = document.querySelector(".prev");
+var nextBtn = document.querySelector(".next");
 
-// --- Pestañas del menú ---
-const tabs = document.querySelectorAll(".top-menu li");
-const sections = document.querySelectorAll("main section");
+var slideWidth = slides[0].offsetWidth + 10; // ancho + margen
+var index = 0;
 
-tabs.forEach((tab, idx) => {
-  tab.addEventListener("click", () => {
-    tabs.forEach(t => t.classList.remove("active"));
-    tab.classList.add("active");
-
-    sections.forEach(s => s.classList.add("hidden"));
-    sections[idx].classList.remove("hidden");
-  });
+// Clonamos los slides para infinito
+slides.forEach(function(slide) {
+  track.appendChild(slide.cloneNode(true));
 });
 
+var originalSlidesCount = slides.length;
 
-// fin del carrusel del home //
+// Función para mover carrusel
+function moveCarousel() {
+  track.style.transition = "transform 0.5s ease";
+  track.style.transform = "translateX(-" + (index * slideWidth) + "px)";
 
+  if (index >= originalSlidesCount) {
+    setTimeout(function() {
+      track.style.transition = "none";
+      index = 0;
+      track.style.transform = "translateX(-" + (index * slideWidth) + "px)";
+    }, 500);
+  }
 
-//----------------------------------------------------------------------//
+  if (index < 0) {
+    setTimeout(function() {
+      track.style.transition = "none";
+      index = originalSlidesCount - 1;
+      track.style.transform = "translateX(-" + (index * slideWidth) + "px)";
+    }, 500);
+  }
+}
 
-// --- Estadísticas debajo del carrusel ---
-document.addEventListener("DOMContentLoaded", () => {
-  const statsContainer = document.getElementById('stats-container');
+// Botones
+nextBtn.addEventListener("click", function() {
+  index++;
+  moveCarousel();
+});
+
+prevBtn.addEventListener("click", function() {
+  index--;
+  moveCarousel();
+});
+
+// Autoplay
+setInterval(function() {
+  index++;
+  moveCarousel();
+}, 3000);
+
+// Ajustar ancho si la ventana cambia
+window.addEventListener("resize", function() {
+  slideWidth = slides[0].offsetWidth + 10;
+  moveCarousel();
+});
+
+// --------------------- PESTAÑAS MENU ---------------------
+var tabs = document.querySelectorAll(".top-menu li");
+var sections = document.querySelectorAll("main section");
+
+for (var i = 0; i < tabs.length; i++) {
+  (function(i){
+    tabs[i].addEventListener("click", function() {
+      for (var j = 0; j < tabs.length; j++) {
+        tabs[j].classList.remove("active");
+        sections[j].classList.add("hidden");
+      }
+      tabs[i].classList.add("active");
+      sections[i].classList.remove("hidden");
+    });
+  })(i);
+}
+
+// --------------------- ESTADISTICAS HEROES ---------------------
+document.addEventListener("DOMContentLoaded", function() {
+  var statsContainer = document.getElementById('stats-container');
 
   fetch('https://api.opendota.com/api/heroStats')
-    .then(res => res.json())
-    .then(data => {
-      const topHeroes = data.slice(0, 10); // primeros 10 héroes
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      var topHeroes = data.slice(0, 10);
 
-  topHeroes.forEach(hero => {
-  const heroId = hero.name.replace('npc_dota_hero_', '');
-  const winrate = hero.pro_pick ? (hero.pro_win / hero.pro_pick * 100) : 0;
-  const pickrate = hero.pro_pick ? (hero.pro_pick / data.reduce((sum, h) => sum + h.pro_pick, 0) * 100) : 0;
+      topHeroes.forEach(function(hero) {
+        var heroId = hero.name.replace('npc_dota_hero_', '');
+        var winrate = hero.pro_pick ? (hero.pro_win / hero.pro_pick * 100) : 0;
+        var pickrate = hero.pro_pick ? (hero.pro_pick / data.reduce(function(sum, h){ return sum + h.pro_pick; },0) * 100) : 0;
 
-  const heroCard = document.createElement('div');
-  heroCard.classList.add('hero-stat');
-  heroCard.innerHTML = `
-    <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/heroes/${heroId}_full.png" alt="${hero.localized_name}">
-    <h3>${hero.localized_name}</h3>
-    <p>Winrate: ${winrate.toFixed(2)}%</p>
-    <p>Pickrate: ${pickrate.toFixed(2)}%</p>
-  `;
-  statsContainer.appendChild(heroCard);
-});
-
-
+        var heroCard = document.createElement('div');
+        heroCard.classList.add('hero-stat');
+        heroCard.innerHTML = '<img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/heroes/' + heroId + '_full.png" alt="' + hero.localized_name + '">' +
+                             '<h3>' + hero.localized_name + '</h3>' +
+                             '<p>Winrate: ' + winrate.toFixed(2) + '%</p>' +
+                             '<p>Pickrate: ' + pickrate.toFixed(2) + '%</p>';
+        statsContainer.appendChild(heroCard);
+      });
     })
-    .catch(err => console.error("Error cargando héroes:", err));
+    .catch(function(err) { console.error("Error cargando héroes:", err); });
 });
-//--------------------------------------------------------------------------
-//Api de yotube para los videos de dota 2
 
-const API_KEY = "AIzaSyBB8MajhXbj_d6f5rvI7x7hs4onHGzozMc";
-const query = "Dota 2";
-const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&maxResults=6&key=${API_KEY}`;
+// --------------------- VIDEOS YOUTUBE ---------------------
+var API_KEY = "AIzaSyBOGBp0MBSDvehfackGkhdoBmDAwelFV1Y"; // Cambia esto por tu API key
+var query = "Dota 2";
+var url = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + query + "&type=video&maxResults=6&key=" + API_KEY;
 
 fetch(url)
-  .then(res => res.json())
-  .then(data => {
-    const container = document.getElementById("videos-container");
-    data.items.forEach(video => {
-      const videoDiv = document.createElement("div");
+  .then(function(res){ return res.json(); })
+  .then(function(data){
+    var container = document.getElementById("videos-container");
+    data.items.forEach(function(video){
+      var videoDiv = document.createElement("div");
       videoDiv.classList.add("video-card");
-      videoDiv.innerHTML = `
-        <a href="https://www.youtube.com/watch?v=${video.id.videoId}" target="_blank">
-          <img src="${video.snippet.thumbnails.medium.url}" alt="${video.snippet.title}">
-          <h4>${video.snippet.title}</h4>
-        </a>
-      `;
+      videoDiv.innerHTML = '<a href="https://www.youtube.com/watch?v=' + video.id.videoId + '" target="_blank">' +
+                           '<img src="' + video.snippet.thumbnails.medium.url + '" alt="' + video.snippet.title + '">' +
+                           '<h4>' + video.snippet.title + '</h4>' +
+                           '</a>';
       container.appendChild(videoDiv);
     });
-  });
+  })
+  .catch(function(err){ console.error("Error cargando videos:", err); });
