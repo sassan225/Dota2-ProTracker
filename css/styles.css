@@ -182,28 +182,79 @@ footer {
   color: #f1faee;
 }
 /*CARRUSEL DE FRASES DE DOTA 2*/
-
-.text-carousel {
-  position: relative;
-  height: 60px; 
+/* Contenedor del carrusel de frases */
+/* --- CARRUSEL DE FRASES EPICO --- */
+#text-carousel {
+  width: 100%;
+  padding: 40px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
-  margin-bottom: 20px;
+  position: relative;
 }
 
+/* Texto grande tipo tráiler */
 .text-slide {
-  position: absolute;
-  width: 100%;
+  font-size: 3.2rem;        /* TAMAÑO DE LETRA GRANDE */
+  font-weight: 900;         /* MUY NEGRITA */
+  color: #e63946;    
+  text-shadow: 0 4px 10px rgba(0,0,0,0.7); /* Glow oscuro */
   opacity: 0;
-  transform: translateY(100%);
-  transition: all 0.8s ease;
-  font-size: 24px;
-  font-weight: bold;
+  position: absolute;
   text-align: center;
-  color: #e63946;
+  width: 90%;
+  transition: opacity 1.3s ease-in-out;
 }
 
 .text-slide.active {
   opacity: 1;
-  transform: translateY(0);
 }
 
+
+/*SECCION DE NOTICIAS*/
+
+#news {
+  margin: 40px 0;
+  text-align: center;
+}
+
+.news-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.news-card {
+  background: linear-gradient(145deg, #2c2c2c, #3a3a3a);
+  border-radius: 15px;
+  width: 300px;
+  padding: 15px;
+  text-align: left;
+  color: #f1faee;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.5);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.news-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.7);
+}
+
+.news-card h3 {
+  font-size: 16px;
+  margin: 5px 0;
+  color: #e63946;
+}
+
+.news-card p {
+  font-size: 14px;
+  margin: 5px 0;
+  color: #a8dadc;
+}
+
+.news-card a {
+  color: #f1faee;
+  text-decoration: underline;
+}

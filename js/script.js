@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function() {
   fetch('https://api.opendota.com/api/heroStats')
     .then(function(res) { return res.json(); })
     .then(function(data) {
-      var topHeroes = data.slice(0, 10);
+      var topHeroes = data.slice(0, 20);
 
       topHeroes.forEach(function(hero) {
         var heroId = hero.name.replace('npc_dota_hero_', '');
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // --------------------- VIDEOS YOUTUBE ---------------------
-var API_KEY = "AIzaSyDI0-Vr2yL90SVOZYVHBvOhXHRZboO3_oU"; // Cambia esto por tu API key
+var API_KEY = "AIzaSyAT21lkyu_gnD-LvBab8JjqJJSq_N-QRAA"; // Cambia esto por tu API key
 var query = "Dota 2";
 var url = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + query + "&type=video&maxResults=6&key=" + API_KEY;
 
@@ -134,3 +134,63 @@ function nextTextSlide() {
 }
 
 setInterval(nextTextSlide, 4000); // Cambia cada 4 segundos
+
+
+//SECCION DE NOTICAS
+document.addEventListener("DOMContentLoaded", function() {
+  var newsContainer = document.getElementById("news-container");
+
+  // Noticias de ejemplo (manual)
+ var noticias = [
+  {
+    title: "Nuevo parche 7.35c lanzado",
+    description: "Cambios en héroes, items y balance general del juego.",
+    url: "https://www.dota2.com/patches/"
+  },
+  {
+    title: "Torneo internacional 2025: Equipos confirmados",
+    description: "Los equipos top del mundo confirmaron su participación.",
+    url: "https://www.dota2.com/esports/"
+  },
+  {
+    title: "Guía rápida: Cómo usar los nuevos héroes",
+    description: "Descubre tips y estrategias de los héroes más recientes.",
+    url: "https://www.dotabuff.com/heroes"
+  },
+  {
+    title: "Evento especial de Halloween",
+    description: "Objetos, misiones y recompensas temáticas.",
+    url: "https://www.dota2.com/events/"
+  },
+  {
+    title: "Balance de objetos en el último parche",
+    description: "Se ajustaron costos y estadísticas de varios items.",
+    url: "https://www.dota2.com/patches/"
+  },
+  {
+    title: "Top 5 héroes más usados esta semana",
+    description: "Estadísticas globales de winrate y pickrate.",
+    url: "https://www.dotabuff.com/heroes"
+  },
+  {
+    title: "Nuevo set de Arcana disponible",
+    description: "Consigue skins exclusivas en la tienda de Dota 2.",
+    url: "https://www.dota2.com/store/"
+  },
+  {
+    title: "Torneos locales de Dota 2",
+    description: "Inscripciones abiertas para competir y ganar premios.",
+    url: "https://www.dota2.com/esports/"
+  }
+];
+
+
+  noticias.forEach(function(noticia){
+    var card = document.createElement("div");
+    card.classList.add("news-card");
+    card.innerHTML = `<h3>${noticia.title}</h3>
+                      <p>${noticia.description}</p>
+                      <a href="${noticia.url}" target="_blank">Leer más</a>`;
+    newsContainer.appendChild(card);
+  });
+});
