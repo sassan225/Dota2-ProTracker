@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // --------------------- VIDEOS YOUTUBE ---------------------
-var API_KEY = "AIzaSyBOGBp0MBSDvehfackGkhdoBmDAwelFV1Y"; // Cambia esto por tu API key
+var API_KEY = "AIzaSyDI0-Vr2yL90SVOZYVHBvOhXHRZboO3_oU"; // Cambia esto por tu API key
 var query = "Dota 2";
 var url = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + query + "&type=video&maxResults=6&key=" + API_KEY;
 
@@ -122,3 +122,15 @@ fetch(url)
     });
   })
   .catch(function(err){ console.error("Error cargando videos:", err); });
+//-------------------------------- CARRUSEL DE FRASES
+
+var slides = document.querySelectorAll(".text-slide");
+var currentSlide = 0;
+
+function nextTextSlide() {
+  slides[currentSlide].classList.remove("active");
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].classList.add("active");
+}
+
+setInterval(nextTextSlide, 4000); // Cambia cada 4 segundos

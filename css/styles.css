@@ -181,3 +181,29 @@ footer {
   margin: 5px;
   color: #f1faee;
 }
+/*CARRUSEL DE FRASES DE DOTA 2*/
+
+.text-carousel {
+  position: relative;
+  height: 60px; 
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.text-slide {
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.8s ease;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: #e63946;
+}
+
+.text-slide.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
