@@ -1,3 +1,7 @@
+import './carrusel.js'
+import { initCarrusel } from './carrusel.js';
+initCarrusel();
+
 // --- Pestañas del menú ---
 const tabs = document.querySelectorAll(".top-menu li");
 const sections = document.querySelectorAll("main section");
@@ -12,37 +16,7 @@ tabs.forEach((tab, idx) => {
   });
 });
 
-// --- Carrusel de Home ---
-const carouselTrack = document.querySelector(".carousel-track");
-const nextBtn = document.querySelector(".next");
-const prevBtn = document.querySelector(".prev");
-let index = 0;
 
-function moveCarousel() {
-  const slides = carouselTrack.children;
-  if (!slides.length) return;
-  const width = slides[0].offsetWidth + 10;
-  carouselTrack.style.transform = `translateX(-${index * width}px)`;
-}
-
-nextBtn.addEventListener("click", () => {
-  const slides = carouselTrack.children;
-  index = (index + 1) % slides.length;
-  moveCarousel();
-});
-
-prevBtn.addEventListener("click", () => {
-  const slides = carouselTrack.children;
-  index = (index - 1 + slides.length) % slides.length;
-  moveCarousel();
-});
-
-// Auto-slide
-setInterval(() => {
-  const slides = carouselTrack.children;
-  index = (index + 1) % slides.length;
-  moveCarousel();
-}, 3000);
 // fin del carrusel del home //
 
 
