@@ -937,3 +937,115 @@ footer {
   }
   .player-card img { height: 280px; }
 }
+/* ==================== FOOTER PRO 2025 ==================== */
+footer {
+  background: linear-gradient(to top, #0f0f0f, #1a1a1a);
+  color: #f1faee;
+  padding: 50px 20px 20px;
+  margin-top: 80px;
+  border-top: 3px solid #e63946;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.footer-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  border: 2px solid #e63946;
+}
+
+.footer-left h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #e63946;
+}
+
+.footer-left p {
+  margin: 5px 0 0;
+  font-size: 0.95rem;
+  color: #a8dadc;
+}
+
+.footer-center {
+  text-align: center;
+}
+
+.footer-center p {
+  margin: 8px 0;
+}
+
+.small-text {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 12px;
+}
+
+.footer-right p {
+  margin: 0 0 12px 0;
+  color: #a8dadc;
+}
+
+.social-icons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.social-link img {
+  width: 32px;
+  height: 32px;
+  filter: grayscale(100%) brightness(0.7);
+  transition: all 0.3s ease;
+}
+
+.social-link:hover img {
+  filter: grayscale(0%) brightness(1);
+  transform: translateY(-6px) scale(1.2);
+}
+
+.social-link:hover:nth-child(1) img { filter: hue-rotate(200deg) brightness(1.2); } /* Twitter azul */
+.social-link:hover:nth-child(2) img { filter: hue-rotate(280deg) brightness(1.3); } /* Twitch morado */
+.social-link:hover:nth-child(3) img { filter: hue-rotate(0deg) brightness(1.3); }   /* YouTube rojo */
+.social-link:hover:nth-child(4) img { filter: hue-rotate(220deg) brightness(1.3); } /* Discord azulito */
+.social-link:hover:nth-child(5) img { filter: grayscale(0%); } /* GitHub blanco */
+.social-link:hover:nth-child(6) img { filter: hue-rotate(330deg) brightness(1.3); } /* Instagram rosa */
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #333;
+  font-size: 0.95rem;
+  color: #e63946;
+  font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 868px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 30px;
+  }
+  .footer-left {
+    justify-content: center;
+  }
+  .social-icons {
+    justify-content: center;
+  }
+}
