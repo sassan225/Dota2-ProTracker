@@ -491,22 +491,42 @@ function cargarJugadores() {
   const grid = document.getElementById("players-grid");
   grid.innerHTML = "";
 
+  // Links reales de Liquipedia (actualizados 2025)
+  const liquipediaLinks = {
+    yatoro: "https://liquipedia.net/dota2/Yatoro",
+    ana: "https://liquipedia.net/dota2/Ana",
+    wisper: "https://liquipedia.net/dota2/Wisper",
+    collapse: "https://liquipedia.net/dota2/Collapse",
+    faithbian: "https://liquipedia.net/dota2/Faith_bian",
+    nothingtosay: "https://liquipedia.net/dota2/NothingToSay",
+    ame: "https://liquipedia.net/dota2/Ame",
+    quinn: "https://liquipedia.net/dota2/Quinn",
+    watson: "https://liquipedia.net/dota2/Watson",
+    malr1ne: "https://liquipedia.net/dota2/Malr1ne",
+    lari: "https://liquipedia.net/dota2/Larl",
+    sumail: "https://liquipedia.net/dota2/SumaiL",
+    nisha: "https://liquipedia.net/dota2/Nisha",
+    ceb: "https://liquipedia.net/dota2/Ceb",
+    "crit": "https://liquipedia.net/dota2/Cr1t-",
+    torontotokyo: "https://liquipedia.net/dota2/Torontotokyo",
+    bzm: "https://liquipedia.net/dota2/Bzm",
+    skiter: "https://liquipedia.net/dota2/Skiter",
+    "23savage": "https://liquipedia.net/dota2/23savage",
+    pure: "https://liquipedia.net/dota2/Pure"
+  };
+
   top20Players.forEach(player => {
     const card = document.createElement("div");
     card.className = "player-card";
 
-    // AQUÍ VAS A PONER TUS FOTOS
-    // Crea una carpeta: /imagenes/jugadores/
-
-    const fotoNombre = player.name.toLowerCase().replace(/[^a-z0-9]/g, ""); // ejemplo: yatoro.jpg
-    //
+    const fotoNombre = player.name.toLowerCase().replace(/[^a-z0-9]/g, "");
 
     card.innerHTML = `
       <div class="rank-badge">#${player.rank}</div>
       <img src="/imagenes/${fotoNombre}.jpg" 
            alt="${player.name}"
-           onerror="this.src='https://i.imgur.com/6mF9b8v.jpg'"> <!-- foto por defecto si falta -->
-      
+           onerror="this.src='https://i.imgur.com/6mF9b8v.jpg'">
+
       <div class="player-info">
         <h3>${player.name}</h3>
         <div class="team">${player.team}</div>
@@ -531,6 +551,15 @@ function cargarJugadores() {
         </div>
       </div>
     `;
+
+    // HACEMOS LA TARJETA CLICKEABLE
+    card.style.cursor = "pointer"; // manito
+    card.title = `Ver perfil de ${player.name} en Liquipedia`; // tooltip
+
+    card.addEventListener("click", () => {
+      window.open(liquipediaLinks[fotoNombre], "_blank");
+    });
+
     grid.appendChild(card);
   });
 }
