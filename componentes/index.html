@@ -1,202 +1,232 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dota 2 ProTracker</title>
-  <link rel="stylesheet" href="/css/styles.css">
-  <link rel="icon" href="/logos/logodota.jpg" type="image/jpeg">
-</head>
-<body>
-  <div class="wrapper">
+  <!DOCTYPE html>
+  <html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dota 2 ProTracker</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" href="/logos/logodota.jpg" type="image/jpeg">
+  </head>
+  <body>
+    <div class="wrapper">
 
-    <!-- Menú superior -->
-    <nav class="top-menu">
-      <div class="menu-left">
-        <ul>
-          <li class="active">Home</li>
-          <li>Meta</li>
-          <li>Héroes</li>
-          <li>Jugadores</li>
-        </ul>
+      <!-- Menú superior -->
+      <nav class="top-menu">
+        <div class="menu-left">
+          <ul>
+            <li class="active">Home</li>
+            <li>Meta</li>
+            <li>Héroes</li>
+            <li>Jugadores</li>
+          </ul>
+        </div>
+        <div class="menu-right">
+          <input type="text" id="player-search" placeholder="Buscar jugador Steam...">
+          <button id="search-btn">Buscar</button>
+          <button class="login-btn" id="btn-login">Log In</button>
+          <button class="signup-btn" id="btn-signup">Sign Up</button>
+        </div>
+      </nav>
+
+      <main>
+  <!-- ====================== HOME ====================== -->
+  <section id="home">
+    <!-- Carrusel de frases -->
+    <div id="text-carousel">
+      <div class="text-slide active">«Una obra maestra de los multijugadores modernos»</div>
+      <div class="text-slide">«Estrategia, trabajo en equipo y habilidades épicas»</div>
+      <div class="text-slide">«Cada héroe tiene su momento para brillar»</div>
+    </div>
+
+    <h1>Bienvenido a Dota 2 ProTracker</h1>
+    <p>Busca jugadores, estadísticas y sigue la meta actual.</p>
+
+    <!-- Carrusel horizontal de héroes -->
+    <div class="carousel">
+      <div class="carousel-track">
+        <img src="/imagenes/invokerFondo.png" alt="Invoker">
+        <img src="/imagenes/linaArcanaFondo.jpg" alt="Lina Arcana">
+        <img src="/imagenes/crystalMaidenPersonaFondo.jpg" alt="Crystal Maiden">
+        <img src="/imagenes/terrorbladeFondo.jpg" alt="Terrorblade">
+        <img src="/imagenes/windDrangerFondo.jpg" alt="Windranger">
+        <img src="/imagenes/shadowfiendFondo.jpg" alt="Shadowfiend">
+        <img src="/imagenes/spectreArcanaFondo.jpg" alt="Spectre Arcana">
+        <img src="/imagenes/phantomAssasinFondo.jpg" alt="Phantom Assassin">
+        <img src="/imagenes/muertaFondo.jpg" alt="Muerta">
       </div>
-      <div class="menu-right">
-        <input type="text" id="player-search" placeholder="Buscar jugador Steam...">
-        <button id="search-btn">Buscar</button>
-        <button class="login-btn" id="btn-login">Log In</button>
-        <button class="signup-btn" id="btn-signup">Sign Up</button>
-      </div>
-    </nav>
+     <button class="prev">◀</button>
+<button class="next">▶</button>
+    </div>
 
-    <main>
-      <!-- HOME -->
-      <section id="home">
-        <!-- Carrusel de frases -->
-        <div id="text-carousel">
-          <div class="text-slide active">«Una obra maestra de los multijugadores modernos»</div>
-          <div class="text-slide">«Estrategia, trabajo en equipo y habilidades épicas»</div>
-          <div class="text-slide">«Cada héroe tiene su momento para brillar»</div>
-        </div>
+    <div class="parrafo-container">
+      <p id="parrafoHome">¡Explora los héroes y sus estadísticas!</p>
+    </div>
 
-        <h1>Bienvenido a Dota 2 ProTracker</h1>
-        <p>Busca jugadores, estadísticas y sigue la meta actual.</p>
+    <!-- Estadísticas héroes -->
+    <div id="estadisticas">
+      <h2>Estadísticas en Tiempo Real</h2>
+      <div id="stats-container"></div>
+    </div>
 
-        <!-- Carrusel horizontal de héroes -->
-        <div class="carousel">
-          <div class="carousel-track">
-            <img src="/imagenes/invokerFondo.png" alt="Invoker">
-            <img src="/imagenes/linaArcanaFondo.jpg" alt="Lina Arcana">
-            <img src="/imagenes/crystalMaidenPersonaFondo.jpg" alt="Crystal Maiden">
-            <img src="/imagenes/terrorbladeFondo.jpg" alt="Terrorblade">
-            <img src="/imagenes/windDrangerFondo.jpg" alt="Windranger">
-            <img src="/imagenes/shadowfiendFondo.jpg" alt="Shadowfiend">
-            <img src="/imagenes/spectreArcanaFondo.jpg" alt="Spectre Arcana">
-            <img src="/imagenes/phantomAssasinFondo.jpg" alt="Phantom Assassin">
-            <img src="/imagenes/muertaFondo.jpg" alt="Muerta">
-          </div>
-          <button class="prev">◀</button>
-          <button class="next">▶</button>
-        </div>
+    <!-- Noticias -->
+    <div id="news">
+      <h2>Noticias y Parches Recientes</h2>
+      <div id="news-container" class="news-grid"></div>
+    </div>
 
-        <div class="parrafo-container">
-          <p id="parrafoHome">¡Explora los héroes y sus estadísticas!</p>
-        </div>
-
-        <!-- Estadísticas héroes -->
-        <div id="estadisticas">
-          <h2>Estadísticas en Tiempo Real</h2>
-          <div id="stats-container"></div>
-        </div>
-
-        <!-- Noticias -->
-        <div id="news">
-          <h2>Noticias y Parches Recientes</h2>
-          <div id="news-container" class="news-grid"></div>
-        </div>
-
+    <!-- Ranking jugadores -->
     <div id="player-ranking">
-  <h2>🏆 Top Jugadores del Mundo (Ranking Real)</h2>
-
-  <div class="ranking-header">
-    <div class="col">Jugador</div>
-    <div class="col">POSICIÓN TOP</div>
-    <div class="col">MMR</div>
-    <div class="col">WINRATE</div>
-    <div class="col">PUNTOS FANTASIA</div>
-  </div>
-
-  <div id="players-container">
-    <p>Cargando jugadores...</p>
-  </div>
-</div>
-
-
-      <!-- META -->
-      <section id="meta" class="hidden">
-        <h1>Meta actual</h1>
-        <p>Aquí se mostrarán estadísticas de héroes y estrategias.</p>
-      </section>
-
-      <!-- HEROES -->
-      <section id="heroes" class="hidden">
-        <h1>Héroes</h1>
-        <p>Estadísticas y winrate por héroe.</p>
-      </section>
-
-      <!-- PLAYERS -->
-      <section id="players" class="hidden">
-        <h1>Jugadores</h1>
-        <p>ProTracker de jugadores.</p>
-      </section>
-    </main>
-  </div> <!-- end wrapper -->
-
-  <!-- Sección videos -->
-  <section id="videos">
-    <h2><span>Videos relacionados de Dota 2</span></h2>
-    <div id="videos-container" class="videos-grid"></div>
+      <h2>Top Jugadores del Mundo (Ranking Real)</h2>
+      <div class="ranking-header">
+        <div class="col">Jugador</div>
+        <div class="col">POSICIÓN TOP</div>
+        <div class="col">MMR</div>
+        <div class="col">WINRATE</div>
+        <div class="col">PUNTOS FANTASIA</div>
+      </div>
+      <div id="players-container">
+        <p>Cargando jugadores...</p>
+      </div>
+    </div>
   </section>
 
-  <footer>
-    <p>© 2025 Dota 2 ProTracker. Todos los derechos reservados.</p>
-  </footer>
-
-  <!-- LOGIN / SIGNUP MODALS -->
-  <div id="modal-overlay" class="hidden"></div>
-
-  <!-- Login Modal -->
-  <div id="modal-login" class="modal hidden" role="dialog" aria-hidden="true" aria-labelledby="login-title">
-    <div class="modal-card">
-      <button class="modal-close" data-close>&times;</button>
-      <div class="modal-header">
-        <img src="/logos/logodota.jpg" alt="logo" class="modal-logo"> <!-- opcional -->
-        <h2 id="login-title">Iniciar sesión</h2>
-        <p class="muted">Accede para guardar tus favoritas y ver estadísticas personalizadas</p>
+  <!-- ====================== META ====================== -->
+  <section id="meta" class="hidden">
+    <div class="meta-header">
+      <h1>Meta Actual <span class="patch">Patch 7.38b</span></h1>
+      <div class="meta-filters">
+        <select id="rank-filter">
+          <option value="divine">Divine+</option>
+          <option value="immortal">Immortal</option>
+          <option value="all">Todas las ranks</option>
+        </select>
+        <select id="period-filter">
+          <option value="7">Últimos 7 días</option>
+          <option value="3">Últimos 3 días</option>
+          <option value="1">Último día</option>
+        </select>
       </div>
-
-      <form id="login-form" class="modal-form" autocomplete="on">
-        <label>
-          <span>Email o SteamID</span>
-          <input type="text" name="user" required placeholder="usuario@ejemplo.com o SteamID">
-        </label>
-
-        <label>
-          <span>Contraseña</span>
-          <input type="password" name="password" required placeholder="••••••••">
-        </label>
-
-        <div class="modal-actions">
-          <button type="submit" class="btn-primary">Entrar</button>
-          <button type="button" class="btn-ghost" data-switch="signup">Crear cuenta</button>
-        </div>
-
-        <div class="social-row">
-          <button type="button" class="btn-social">Iniciar con Steam</button>
-          <button type="button" class="btn-social">Iniciar con Google</button>
-        </div>
-      </form>
     </div>
-  </div>
 
-  <!-- Signup Modal -->
-  <div id="modal-signup" class="modal hidden" role="dialog" aria-hidden="true" aria-labelledby="signup-title">
-    <div class="modal-card">
-      <button class="modal-close" data-close>&times;</button>
-      <div class="modal-header">
-        <img src="/logos/logodota.jpg" alt="logo" class="modal-logo">
-        <h2 id="signup-title">Crear cuenta</h2>
-        <p class="muted">Regístrate para guardar tus configuraciones y seguir jugadores</p>
+    <div class="meta-table-container">
+      <table class="meta-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Héroe</th>
+            <th>Pickrate</th>
+            <th>Winrate</th>
+            <th>Cambio vs semana pasada</th>
+            <th>Trend</th>
+          </tr>
+        </thead>
+        <tbody id="meta-heroes-body">
+          <tr><td colspan="6">Cargando meta actual...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ====================== HÉROES ====================== -->
+  <section id="heroes" class="hidden">
+    <h1>Héroes</h1>
+    <p>Estadísticas y winrate por héroe.</p>
+  </section>
+
+  <!-- ====================== JUGADORES ====================== -->
+  <section id="players" class="hidden">
+    <h1>Jugadores</h1>
+    <p>ProTracker de jugadores.</p>
+  </section>
+</main>
+    </div> <!-- end wrapper -->
+
+    <!-- Sección videos -->
+    <section id="videos">
+      <h2><span>Videos relacionados de Dota 2</span></h2>
+      <div id="videos-container" class="videos-grid"></div>
+    </section>
+
+    <footer>
+      <p>© 2025 Dota 2 ProTracker. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- LOGIN / SIGNUP MODALS -->
+    <div id="modal-overlay" class="hidden"></div>
+
+    <!-- Login Modal -->
+    <div id="modal-login" class="modal hidden" role="dialog" aria-hidden="true" aria-labelledby="login-title">
+      <div class="modal-card">
+        <button class="modal-close" data-close>&times;</button>
+        <div class="modal-header">
+          <img src="/logos/logodota.jpg" alt="logo" class="modal-logo"> <!-- opcional -->
+          <h2 id="login-title">Iniciar sesión</h2>
+          <p class="muted">Accede para guardar tus favoritas y ver estadísticas personalizadas</p>
+        </div>
+
+        <form id="login-form" class="modal-form" autocomplete="on">
+          <label>
+            <span>Email o SteamID</span>
+            <input type="text" name="user" required placeholder="usuario@ejemplo.com o SteamID">
+          </label>
+
+          <label>
+            <span>Contraseña</span>
+            <input type="password" name="password" required placeholder="••••••••">
+          </label>
+
+          <div class="modal-actions">
+            <button type="submit" class="btn-primary">Entrar</button>
+            <button type="button" class="btn-ghost" data-switch="signup">Crear cuenta</button>
+          </div>
+
+          <div class="social-row">
+            <button type="button" class="btn-social">Iniciar con Steam</button>
+            <button type="button" class="btn-social">Iniciar con Google</button>
+          </div>
+        </form>
       </div>
-
-      <form id="signup-form" class="modal-form" autocomplete="on">
-        <label>
-          <span>Nombre de usuario</span>
-          <input type="text" name="username" required placeholder="TuNick">
-        </label>
-
-        <label>
-          <span>Email</span>
-          <input type="email" name="email" required placeholder="usuario@ejemplo.com">
-        </label>
-
-        <label>
-          <span>Contraseña</span>
-          <input type="password" name="password" minlength="6" required placeholder="mínimo 6 caracteres">
-        </label>
-
-        <div class="modal-actions">
-          <button type="submit" class="btn-primary">Crear cuenta</button>
-          <button type="button" class="btn-ghost" data-switch="login">¿Ya tienes cuenta?</button>
-        </div>
-
-        <div class="social-row">
-          <button type="button" class="btn-social">Registrarse con Steam</button>
-          <button type="button" class="btn-social">Registrarse con Google</button>
-        </div>
-      </form>
     </div>
-  </div>
 
-  <script src="/js/script.js"></script>
-</body>
-</html>
+    <!-- Signup Modal -->
+    <div id="modal-signup" class="modal hidden" role="dialog" aria-hidden="true" aria-labelledby="signup-title">
+      <div class="modal-card">
+        <button class="modal-close" data-close>&times;</button>
+        <div class="modal-header">
+          <img src="/logos/logodota.jpg" alt="logo" class="modal-logo">
+          <h2 id="signup-title">Crear cuenta</h2>
+          <p class="muted">Regístrate para guardar tus configuraciones y seguir jugadores</p>
+        </div>
+
+        <form id="signup-form" class="modal-form" autocomplete="on">
+          <label>
+            <span>Nombre de usuario</span>
+            <input type="text" name="username" required placeholder="TuNick">
+          </label>
+
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" required placeholder="usuario@ejemplo.com">
+          </label>
+
+          <label>
+            <span>Contraseña</span>
+            <input type="password" name="password" minlength="6" required placeholder="mínimo 6 caracteres">
+          </label>
+
+          <div class="modal-actions">
+            <button type="submit" class="btn-primary">Crear cuenta</button>
+            <button type="button" class="btn-ghost" data-switch="login">¿Ya tienes cuenta?</button>
+          </div>
+
+          <div class="social-row">
+            <button type="button" class="btn-social">Registrarse con Steam</button>
+            <button type="button" class="btn-social">Registrarse con Google</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="/js/script.js"></script>
+  </body>
+  </html>
