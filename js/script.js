@@ -570,3 +570,97 @@ document.querySelector(".top-menu li:nth-child(4)").addEventListener("click", ()
     cargarJugadores();
   }
 });
+// ==================== MOTOR DE BÚSQUEDA GLOBAL DE JUGADORES ====================
+
+const searchInput = document.getElementById("player-search");
+const searchBtn = document.getElementById("search-btn");
+
+// Lista de jugadores con sus datos para buscar (usa los mismos que ya tienes)
+const jugadoresBuscables = [
+  { name: "Yatoro",          steamid: "136829594",  dotabuff: "196874345", aliases: ["yatoro", "yatoro~", "illya", "yatorogod"] },
+  { name: "Ana",             steamid: "10366616",   dotabuff: "86745912",  aliases: ["ana", "anathan"] },
+  { name: "Wisper",          steamid: "11142019",   dotabuff: "11142019",  aliases: ["wisper", "wisper~", "adrian"] },
+  { name: "Collapse",        steamid: "302214028",  dotabuff: "302214028", aliases: ["collapse", "magomed"] },
+  { name: "Faith_bian",      steamid: "118134220",  dotabuff: "118134220", aliases: ["faith_bian", "faithbian", "zhang"] },
+  { name: "NothingToSay",    steamid: "135656964",  dotabuff: "135656964", aliases: ["nts", "nothingtosay", "cheng"] },
+  { name: "Ame",               steamid: "125581247",  dotabuff: "125581247", aliases: ["ame", "wang"] },
+  { name: "Quinn",           steamid: "152962063",  dotabuff: "152962063", aliases: ["quinn", "quinn callahan"] },
+  { name: "Watson",          steamid: "168282617",  dotabuff: "168282617", aliases: ["watson", "alimzhan"] },
+  { name: "Malr1ne",         steamid: "202397251",  dotabuff: "202397251", aliases: ["malr1ne", "malrine", "pma"] },
+  { name: "LarI",            steamid: "302372247",  dotabuff: "302372247", aliases: ["larl", "lar1", "denis"] },
+  { name: "SumaiL",          steamid: "111620041",  dotabuff: "111620041", aliases: ["sumail", "suma1l", "king"] },
+  { name: "Nisha",           steamid: "117421042",  dotabuff: "117421042", aliases: ["nisha", "michal"] },
+  { name: "Ceb",             steamid: "100058428",  dotabuff: "100058428", aliases: ["ceb", "sebastien"] },
+  { name: "Cr1t-",           steamid: "25907144",   dotabuff: "25907144",  aliases: ["cr1t", "crit", "andreas"] },
+  { name: "Torontotokyo",    steamid: "171691200",  dotabuff: "171691200", aliases: ["torontotokyo", "alexander"] },
+  { name: "bzm",             steamid: "167881429",  dotabuff: "167881429", aliases: ["bzm", "bozhidar"] },
+  { name: "Skiter",          steamid: "117483894",  dotabuff: "117483894", aliases: ["skiter", "oliver"] },
+  { name: "23savage",        steamid: "192813017",  dotabuff: "192813017", aliases: ["23savage", "nuengnara"] },
+  { name: "Pure",            steamid: "261575978",  dotabuff: "261575978", aliases: ["pure", "ivan"] }
+];
+
+// Función para buscar jugador
+function buscarJugador() {
+  let query = searchInput.value.trim().toLowerCase();
+
+  if (query === "") {
+    alert("Escribe un nombre, apodo o SteamID");
+    return;
+  }
+
+  // Buscar coincidencia
+  const encontrado = jugadoresBuscables.find(j => 
+    j.aliases.includes(query) || 
+    j.name.toLowerCase() === query || 
+    j.steamid === query || 
+    j.dotabuff === query
+  );
+
+  if (encontrado) {
+    // Si está en el Top 20 → ir a la sección y resaltar tarjeta
+    const tabs = document.querySelectorAll(".top-menu li");
+    tabs[3].click(); // hace click en "Jugadores"
+
+    setTimeout(() => {
+      const tarjeta = document.querySelector(`.player-card h3`);
+      if (tarjeta && tarjeta.textContent.toLowerCase() === encontrado.name.toLowerCase()) {
+        tarjeta.closest(".player-card").scrollIntoView({ behavior: "smooth", block: "center" });
+        tarjeta.closest(".player-card").style.boxShadow = "0 0 40px #e63946";
+        tarjeta.closest(".player-card").style.transform = "scale(1.08)";
+        setTimeout(() => {
+          tarjeta.closest(".player-card").style.boxShadow = "";
+          tarjeta.closest(".player-card").style.transform = "";
+        }, 2000);
+      }
+    }, 300);
+
+  } else {
+    // Si no está en el Top 20 → abrir Dotabuff con el SteamID o nombre
+    let url = "";
+    if (/^\d+$/.test(query) && query.length >= 8) {
+      // Es un SteamID o AccountID
+      url = `https://dotabuff.com/players/${query}`;
+    } else {
+      // Es un nombre → buscamos en Dotabuff
+      url = `https://dotabuff.com/search?utf8=%E2%9C%93&q=${encodeURIComponent(query)}`;
+    }
+    window.open(url, "_blank");
+  }
+}
+
+// Eventos del buscador
+searchInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") buscarJugador();
+});
+
+searchBtn.addEventListener("click", buscarJugador);
+
+// BONUS: que el input se vea pro cuando está activo
+searchInput.addEventListener("focus", () => {
+  searchInput.style.boxShadow = "0 0 20px rgba(230,57,70,0.6)";
+  searchInput.style.borderColor = "#e63946";
+});
+searchInput.addEventListener("blur", () => {
+  searchInput.style.boxShadow = "";
+  searchInput.style.borderColor = "";
+});
