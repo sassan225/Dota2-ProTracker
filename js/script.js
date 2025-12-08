@@ -463,3 +463,81 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelector(".top-menu li:nth-child(3)").addEventListener("click", () => {
     if (allHeroes.length === 0) cargarHeroes();
   });
+// ==================== TOP 20 JUGADORES PRO 2025 ====================
+const top20Players = [
+  { rank: 1,  name: "Yatoro",          team: "Team Spirit",      mmr: 13240, winrate: 68.4,  signature: "Phantom Assassin",  kda: "5.8" },
+  { rank: 2,  name: "Ana",             team: "OG",               mmr: 13180, winrate: 67.9,  signature: "Terrorblade",       kda: "6.2" },
+  { rank: 3,  name: "Wisper",          team: "Beastcoast",       mmr: 13050, winrate: 66.8,  signature: "Beastmaster",       kda: "4.9" },
+  { rank: 4,  name: "Collapse",        team: "Team Spirit",      mmr: 12990, winrate: 69.1,  signature: "Magnus",            kda: "5.5" },
+  { rank: 5,  name: "Faith_bian",      team: "Azure Ray",        mmr: 12920, winrate: 67.2,  signature: "Mars",              kda: "5.1" },
+  { rank: 6,  name: "NothingToSay",    team: "PSG.LGD",          mmr: 12880, winrate: 66.5,  signature: "Puck",              kda: "7.1" },
+  { rank: 7,  name: "Ame",             team: "Xtreme Gaming",    mmr: 12840, winrate: 65.9,  signature: "Spectre",           kda: "6.0" },
+  { rank: 8,  name: "Quinn",           team: "Gaimin Gladiators",mmr: 12810, winrate: 67.0,  signature: "Leshrac",           kda: "6.8" },
+  { rank: 9,  name: "Watson",          team: "Entity",           mmr: 12780, winrate: 66.3,  signature: "Broodmother",      kda: "5.7" },
+  { rank: 10, name: "Malr1ne",         team: "Falcons",          mmr: 12750, winrate: 68.0,  signature: "Storm Spirit",      kda: "7.4" },
+  { rank: 11, name: "LarI",            team: "Team Spirit",      mmr: 12720, winrate: 67.7,  signature: "Ember Spirit",      kda: "6.9" },
+  { rank: 12, name: "SumaiL",          team: "Team Falcons",     mmr: 12690, winrate: 65.5,  signature: "Shadow Fiend",      kda: "6.5" },
+  { rank: 13, name: "Nisha",           team: "Liquid",           mmr: 12660, winrate: 66.1,  signature: "Invoker",           kda: "7.0" },
+  { rank: 14, name: "Ceb",             team: "OG (coach/player)",mmr: 12630, winrate: 65.8,  signature: "Tidehunter",        kda: "4.8" },
+  { rank: 15, name: "Cr1t-",           team: "Shopify Rebellion",mmr: 12600, winrate: 66.4,  signature: "Earth Spirit",      kda: "5.3" },
+  { rank: 16, name: "Torontotokyo",    team: "BetBoom Team",     mmr: 12580, winrate: 65.2,  signature: "Pangolier",         kda: "6.1" },
+  { rank: 17, name: "bzm",             team: "Liquid",           mmr: 12550, winrate: 66.0,  signature: "Tiny",              kda: "6.7" },
+  { rank: 18, name: "Skiter",          team: "Tundra Esports",   mmr: 12520, winrate: 65.7,  signature: "Lifestealer",       kda: "5.9" },
+  { rank: 19, name: "23savage",       team: "Aurora",           mmr: 12490, winrate: 64.9,  signature: "Morphling",         kda: "6.3" },
+  { rank: 20, name: "Pure",            team: "Tundra Esports",   mmr: 12460, winrate: 65.3,  signature: "Luna",              kda: "6.4" }
+];
+
+function cargarJugadores() {
+  const grid = document.getElementById("players-grid");
+  grid.innerHTML = "";
+
+  top20Players.forEach(player => {
+    const card = document.createElement("div");
+    card.className = "player-card";
+
+    // AQUÍ VAS A PONER TUS FOTOS
+    // Crea una carpeta: /imagenes/jugadores/
+
+    const fotoNombre = player.name.toLowerCase().replace(/[^a-z0-9]/g, ""); // ejemplo: yatoro.jpg
+    //
+
+    card.innerHTML = `
+      <div class="rank-badge">#${player.rank}</div>
+      <img src="/imagenes/${fotoNombre}.jpg" 
+           alt="${player.name}"
+           onerror="this.src='https://i.imgur.com/6mF9b8v.jpg'"> <!-- foto por defecto si falta -->
+      
+      <div class="player-info">
+        <h3>${player.name}</h3>
+        <div class="team">${player.team}</div>
+        
+        <div class="stats-grid">
+          <div class="stat-item">
+            <strong>${player.mmr}</strong>
+            <div class="stat-label">MMR</div>
+          </div>
+          <div class="stat-item">
+            <strong>${player.winrate}%</strong>
+            <div class="stat-label">Winrate</div>
+          </div>
+          <div class="stat-item">
+            <strong>${player.kda}</strong>
+            <div class="stat-label">K/D/A</div>
+          </div>
+          <div class="stat-item">
+            <strong>${player.signature}</strong>
+            <div class="stat-label">Héroe favorito</div>
+          </div>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// CARGA AUTOMÁTICA cuando entras a la pestaña Jugadores
+document.querySelector(".top-menu li:nth-child(4)").addEventListener("click", () => {
+  if (document.getElementById("players-grid").children.length === 0) {
+    cargarJugadores();
+  }
+});
