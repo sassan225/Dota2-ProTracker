@@ -719,3 +719,100 @@ footer {
     justify-content: center;
   }
 }
+/*Estilos para la seccion de heroes*/
+.heroes-header {
+  text-align: center;
+  margin: 40px 0;
+}
+.heroes-header h1 {
+  font-size: 3rem;
+  color: #f1faee;
+  margin-bottom: 25px;
+  text-shadow: 0 0 20px rgba(230,57,70,0.5);
+}
+.search-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+#hero-search {
+  width: 100%;
+  padding: 18px 25px;
+  border-radius: 50px;
+  border: 3px solid #e63946;
+  background: #2c2c2c;
+  color: #f1faee;
+  font-size: 1.3rem;
+  text-align: center;
+  transition: all 0.3s;
+}
+#hero-search:focus {
+  outline: none;
+  box-shadow: 0 0 25px rgba(230,57,70,0.6);
+  transform: scale(1.02);
+}
+
+.heroes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.hero-card {
+  background: linear-gradient(145deg, #2c2c2c, #3a3a3a);
+  border-radius: 18px;
+  overflow: hidden;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.4s;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+}
+.hero-card:hover {
+  transform: translateY(-15px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(230,57,70,0.5);
+}
+.hero-card img {
+  width: 100%;
+  height: 80px;
+  object-fit: contain;
+  background: #1b1b1b;
+}
+.hero-card h3 {
+  margin: 12px 0 8px;
+  font-size: 0.95rem;
+  color: #f1faee;
+}
+
+/* MODAL */
+.modal-hero {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(10px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-hero-content {
+  background: linear-gradient(145deg, #242424, #333);
+  border-radius: 25px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  border: 2px solid #e63946;
+  box-shadow: 0 0 50px rgba(230,57,70,0.6);
+}
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 3rem;
+  color: #e63946;
+  cursor: pointer;
+  z-index: 10;
+}
