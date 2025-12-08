@@ -177,68 +177,134 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById('signup-form').addEventListener('submit', e=>{ e.preventDefault(); alert('Signup simulado.'); closeModals(); });
 
 // --------------------- META HEROES MOCK ---------------------
+// ====================== MOCK DATA - META COMPLETA (Patch 7.38b - Divine+) ======================
+
 const metaHeroesMock = [
   { name: "npc_dota_hero_spirit_breaker",    localized_name: "Spirit Breaker",    pickrate: 18.4, winrate: 54.8 },
   { name: "npc_dota_hero_beastmaster",       localized_name: "Beastmaster",       pickrate: 16.2, winrate: 55.1 },
-  { name: "npc_dota_hero_muerta",            localized_name: "Muerta",            pickrate: 15.7, winrate: 53.9 },
+  { name: "npc_dota_hero_muerta",            localized_name: "Muerta",          pickrate: 15.7, winrate: 53.9 },
   { name: "npc_dota_hero_shadow_fiend",      localized_name: "Shadow Fiend",      pickrate: 14.3, winrate: 52.7 },
-  { name: "npc_dota_hero_phantom_assassin",  localized_name: "Phantom Assassin",  pickrate: 13.8, winrate: 53.4 },
+  { name: "npc_dota_hero_phantom_assassin", localized_name: "Phantom Assassin",   pickrate: 13.8, winrate: 53.4 },
   { name: "npc_dota_hero_lina",              localized_name: "Lina",              pickrate: 12.9, winrate: 51.9 },
-  { name: "npc_dota_hero_invoker",           localized_name: "Invoker",           pickrate: 12.5, winrate: 52.3 },
-  { name: "npc_dota_hero_terrorblade",       localized_name: "Terrorblade",       pickrate: 11.8, winrate: 54.2 },
-  { name: "npc_dota_hero_slark",         localized_name: "Windranger",        pickrate: 11.5, winrate: 51.6 },
-  { name: "npc_dota_hero_spectre",           localized_name: "Spectre",           pickrate: 11.1, winrate: 52.1 },
-  { name: "npc_dota_hero_crystal_maiden",    localized_name: "Crystal Maiden",    pickrate: 10.8, winrate: 50.5 },
-  { name: "npc_dota_hero_axe",               localized_name: "Axe",               pickrate: 10.4, winrate: 51.8 },
-  { name: "npc_dota_hero_tiny",              localized_name: "Tiny",              pickrate: 10.1, winrate: 53.0 },
-  { name: "npc_dota_hero_pudge",             localized_name: "Pudge",             pickrate: 9.9,  winrate: 49.7 },
-  { name: "npc_dota_hero_queenofpain",       localized_name: "Queen of Pain",     pickrate: 9.6,  winrate: 52.6 },
-  { name: "npc_dota_hero_sniper",            localized_name: "Sniper",            pickrate: 9.3,  winrate: 50.9 },
-  { name: "npc_dota_hero_juggernaut",        localized_name: "Juggernaut",        pickrate: 9.0,  winrate: 51.4 },
-  { name: "npc_dota_hero_lion",              localized_name: "Lion",              pickrate: 8.8,  winrate: 50.2 },
-  { name: "npc_dota_hero_necrolyte",         localized_name: "Necrophos",         pickrate: 8.5,  winrate: 52.9 },
-  { name: "npc_dota_hero_earthshaker",       localized_name: "Earthshaker",       pickrate: 8.3,  winrate: 51.1 },
-  { name: "npc_dota_hero_ogre_magi",         localized_name: "Ogre Magi",         pickrate: 8.1,  winrate: 53.3 },
-  { name: "npc_dota_hero_slark",             localized_name: "Slark",             pickrate: 7.9,  winrate: 50.8 },
-  { name: "npc_dota_hero_dazzle",            localized_name: "Dazzle",            pickrate: 7.7,  winrate: 52.5 },
-  { name: "npc_dota_hero_troll_warlord",     localized_name: "Troll Warlord",     pickrate: 7.5,  winrate: 53.7 },
-  { name: "npc_dota_hero_phantom_lancer",    localized_name: "Phantom Lancer",    pickrate: 7.3,  winrate: 51.9 },
-  { name: "npc_dota_hero_vengefulspirit",    localized_name: "Vengeful Spirit",   pickrate: 7.1,  winrate: 50.6 },
-  { name: "npc_dota_hero_kez",         localized_name: "Clockwerk",         pickrate: 6.9,  winrate: 52.4 },
-  { name: "npc_dota_hero_witch_doctor",      localized_name: "Witch Doctor",      pickrate: 6.7,  winrate: 51.2 },
-  { name: "npc_dota_hero_chaos_knight",      localized_name: "Chaos Knight",      pickrate: 6.5,  winrate: 53.1 },
-  { name: "npc_dota_hero_wisp",       localized_name: "Lifestealer",       pickrate: 6.3,  winrate: 52.0 }
+  { name: "npc_dota_hero_invoker",           localized_name: "Invoker",            pickrate: 12.5, winrate: 52.3 },
+  { name: "npc_dota_hero_terrorblade",       localized_name: "Terrorblade",        pickrate: 11.8, winrate: 54.2 },
+  { name: "npc_dota_hero_windranger",        localized_name: "Windranger",         pickrate: 11.5, winrate: 51.6 },
+  { name: "npc_dota_hero_spectre",          localized_name: "Spectre",            pickrate: 11.1, winrate: 52.1 },
+  { name: "npc_dota_hero_crystal_maiden",    localized_name: "Crystal Maiden",     pickrate: 10.8, winrate: 50.5 },
+  { name: "npc_dota_hero_axe",              localized_name: "Axe",               pickrate: 10.4, winrate: 51.8 },
+  { name: "npc_dota_hero_tiny",             localized_name: "Tiny",               pickrate: 10.1, winrate: 53.0 },
+  { name: "npc_dota_hero_pudge",            localized_name: "Pudge",              pickrate: 9.9,  winrate: 49.7 },
+  { name: "npc_dota_hero_queenofpain",      localized_name: "Queen of Pain",      pickrate: 9.6,  winrate: 52.6 }
 ];
 
-// Función para cargar meta (mock)
-function cargarMetaMock() {
+const metaItemsMock = [
+  { id: "black_king_bar",        name: "Black King Bar",        pickrate: 42.1, winrate: 56.3 },
+  { id: "blink",                 name: "Blink Dagger",         pickrate: 38.7, winrate: 53.8 },
+  { id: "aghanims_scepter",      name: "Aghanim's Scepter",   pickrate: 35.2, winrate: 54.1 },
+  { id: "manta",                name: "Manta Style",          pickrate: 28.9, winrate: 55.7 },
+  { id: "desolator",            name: "Desolator",           pickrate: 26.4, winrate: 54.9 },
+  { id: "silver_edge",           name: "Silver Edge",          pickrate: 24.1, winrate: 53.2 },
+  { id: "satanic",              name: "Satanic",             pickrate: 22.8, winrate: 58.1 },
+  { id: "butterfly",             name: "Butterfly",            pickrate: 21.5, winrate: 57.3 },
+  { id: "heart",               name: "Heart of Tarrasque",   pickrate: 20.1, winrate: 59.0 },
+  { id: "travel_boots",          name: "Boots of Travel",      pickrate: 19.7, winrate: 56.8 }
+];
+
+const metaItemsTopMock = [
+  { hero: "Spirit Breaker", item: "Black King Bar",       pickrate: 68.2, winrate: 58.9 },
+  { hero: "Beastmaster",   item: "Aghanim's Scepter",   pickrate: 72.1, winrate: 60.2 },
+  { hero: "Muerta",       item: "Desolator",           pickrate: 65.4, winrate: 57.8 },
+  { hero: "Shadow Fiend",  item: "Black King Bar",       pickrate: 70.1, winrate: 56.5 },
+  { hero: "Phantom Assassin", item: "Desolator",         pickrate: 74.3, winrate: 59.1 },
+  { hero: "Lina",        item: "Eul's Scepter",       pickrate: 62.8, winrate: 55.9 },
+  { hero: "Terrorblade",   item: "Manta Style",          pickrate: 81.2, winrate: 61.3 },
+  { hero: "Windranger",   item: "Maelstrom",           pickrate: 58.7, winrate: 54.2 },
+  { hero: "Invoker",       item: "Aghanim's Scepter",   pickrate: 69.5, winrate: 57.8 },
+  { hero: "Spectre",      item: "Radiance",            pickrate: 55.1, winrate: 58.6 }
+];
+
+// ====================== FUNCIONES PARA CARGAR TABLAS ======================
+
+function cargarMetaHeroes() {
   const tbody = document.getElementById("meta-heroes-body");
   tbody.innerHTML = "";
 
-  metaHeroesMock.forEach((hero, index) => {
-    let heroId = hero.name.replace("npc_dota_hero_", "");
-    
-    // Ajustes para nombres especiales que no coinciden en la CDN
-    if (heroId === "windrunner") heroId = "windranger";
-    if (heroId === "shadow_fiend") heroId = "nevermore";
-    if (heroId === "phantom_assassin") heroId = "phantom_assassin";
-    
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${index + 1}</td>
-      <td>
-        <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/heroes/${heroId}_full.png" 
-             alt="${hero.localized_name}" style="width:50px; vertical-align:middle; margin-right:5px;">
-        ${hero.localized_name}
-      </td>
-      <td>${hero.pickrate}%</td>
-      <td>${hero.winrate}%</td>
-      <td>+0.00%</td>
-      <td>—</td>
-    `;
-    tbody.appendChild(tr);
+  metaHeroesMock.forEach((h, i) => {
+    let id = h.name.replace("npc_dota_hero_", "");
+    if (id === "windrunner") id = "windranger";
+    if (id === "shadow_fiend") id = "nevermore";
+    if (id === "queenofpain") id = "queenofpain";
+
+    const cambio = (Math.random() * 6 - 3).toFixed(2);
+    const sube = cambio > 0;
+
+    tbody.innerHTML += `
+      <tr>
+        <td style="color:#e63946;font-weight:bold">${i+1}</td>
+        <td style="display:flex;align-items:center;gap:10px;">
+          <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/${id}.png" 
+               style="width:52px;height:29px;border-radius:6px;border:2px solid #444;">
+          <strong>${h.localized_name}</strong>
+        </td>
+        <td style="color:#a8dadc">${h.pickrate}%</td>
+        <td style="color:#4ade80;font-weight:bold">${h.winrate}%</td>
+        <td style="color:${sube?'#4ade80':'#f87171'}">${sube?'+' : ''}${cambio}%</td>
+        <td style="font-size:1.6rem">${sube ? 'Up Arrow' : 'Down Arrow'}</td>
+      </tr>`;
   });
 }
 
-// Llamada inicial al cargar la página
-document.addEventListener("DOMContentLoaded", cargarMetaMock)});
+function cargarMetaItems() {
+  const tbody = document.getElementById("meta-items-body");
+  tbody.innerHTML = "";
+
+  metaItemsMock.forEach((item, i) => {
+    const cambio = (Math.random() * 8 - 4).toFixed(2);
+    const sube = cambio > 0;
+
+    tbody.innerHTML += `
+      <tr>
+        <td style="color:#e63946;font-weight:bold">${i+1}</td>
+        <td style="display:flex;align-items:center;gap:10px;">
+          <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/${item.id}.png" 
+               style="width:44px;height:33px;border-radius:6px;">
+          ${item.name}
+        </td>
+        <td style="color:#a8dadc">${item.pickrate}%</td>
+        <td style="color:#4ade80;font-weight:bold">${item.winrate}%</td>
+        <td style="color:${sube?'#4ade80':'#f87171'}">${sube?'+' : ''}${cambio}%</td>
+        <td style="font-size:1.6rem">${sube ? 'Up Arrow' : 'Down Arrow'}</td>
+      </tr>`;
+  });
+}
+
+function cargarMetaItemsTop() {
+  const tbody = document.getElementById("meta-items-top-body");
+  tbody.innerHTML = "";
+
+  metaItemsTopMock.forEach((data, i) => {
+    tbody.innerHTML += `
+      <tr>
+        <td style="color:#e63946;font-weight:bold">${i+1}</td>
+        <td>${data.hero}</td>
+        <td style="display:flex;align-items:center;gap:10px;">
+          <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/${data.item.toLowerCase().replace(/ /g,'_').replace(/'/g,'')}.png" 
+               style="width:44px;height:33px;border-radius:6px;">
+          ${data.item}
+        </td>
+        <td style="color:#a8dadc">${data.pickrate}%</td>
+        <td style="color:#4ade80;font-weight:bold">${data.winrate}%</td>
+      </tr>`;
+  });
+}
+
+// ====================== CARGA AL ENTRAR A LA PESTAÑA META ======================
+document.querySelector(".top-menu li:nth-child(2)").addEventListener("click", () => {
+  // Solo carga una vez
+  if (document.getElementById("meta-heroes-body").children.length === 1) {
+    cargarMetaHeroes();
+    cargarMetaItems();
+    cargarMetaItemsTop();
+  }
+});
+})

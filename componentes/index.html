@@ -90,42 +90,73 @@
     </div>
   </section>
 
-  <!-- ====================== META ====================== -->
-  <section id="meta" class="hidden">
-    <div class="meta-header">
-      <h1>Meta Actual <span class="patch">Patch 7.38b</span></h1>
-      <div class="meta-filters">
-        <select id="rank-filter">
-          <option value="divine">Divine+</option>
-          <option value="immortal">Immortal</option>
-          <option value="all">Todas las ranks</option>
-        </select>
-        <select id="period-filter">
-          <option value="7">Últimos 7 días</option>
-          <option value="3">Últimos 3 días</option>
-          <option value="1">Último día</option>
-        </select>
-      </div>
-    </div>
+<!-- ====================== META ====================== -->
+<section id="meta" class="hidden">
+  <div class="meta-header">
+    <h1>Meta Actual <span class="patch">Patch 7.38b</span></h1>
+  </div>
 
-    <div class="meta-table-container">
-      <table class="meta-table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Héroe</th>
-            <th>Pickrate</th>
-            <th>Winrate</th>
-            <th>Cambio vs semana pasada</th>
-            <th>Trend</th>
-          </tr>
-        </thead>
-        <tbody id="meta-heroes-body">
-          <tr><td colspan="6">Cargando meta actual...</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+  <!-- Tabla de Héroes -->
+  <div class="meta-table-container">
+    <table class="meta-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Héroe</th>
+          <th>Pickrate</th>
+          <th>Winrate</th>
+          <th>Cambio vs semana pasada</th>
+          <th>Trend</th>
+        </tr>
+      </thead>
+      <tbody id="meta-heroes-body">
+        <tr><td colspan="6">Cargando meta actual...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Tabla de Items -->
+  <div class="meta-table-container">
+    <h2>Items Más Comprados</h2>
+    <table class="meta-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Item</th>
+          <th>Pickrate</th>
+          <th>Winrate</th>
+          <th>Cambio vs semana pasada</th>
+          <th>Trend</th>
+        </tr>
+      </thead>
+      <tbody id="meta-items-body">
+        <tr><td colspan="6">Cargando items...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Tabla de Items por Héroes -->
+  <div class="meta-table-container">
+    <h2>Items por Héroes Top</h2>
+    <table class="meta-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Héroe</th>
+          <th>Item</th>
+          <th>Pickrate</th>
+          <th>Winrate</th>
+        </tr>
+      </thead>
+      <tbody id="meta-items-top-body">
+        <tr><td colspan="5">Cargando recomendaciones...</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+  
 
   <!-- ====================== HÉROES ====================== -->
   <section id="heroes" class="hidden">
