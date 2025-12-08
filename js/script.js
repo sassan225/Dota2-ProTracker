@@ -188,7 +188,7 @@ const metaHeroesMock = [
   { name: "npc_dota_hero_lina",              localized_name: "Lina",              pickrate: 12.9, winrate: 51.9 },
   { name: "npc_dota_hero_invoker",           localized_name: "Invoker",            pickrate: 12.5, winrate: 52.3 },
   { name: "npc_dota_hero_terrorblade",       localized_name: "Terrorblade",        pickrate: 11.8, winrate: 54.2 },
-  { name: "npc_dota_hero_windranger",        localized_name: "Windranger",         pickrate: 11.5, winrate: 51.6 },
+  { name: "npc_dota_hero_wisp",        localized_name: "Windrunner",         pickrate: 11.5, winrate: 51.6 },
   { name: "npc_dota_hero_spectre",          localized_name: "Spectre",            pickrate: 11.1, winrate: 52.1 },
   { name: "npc_dota_hero_crystal_maiden",    localized_name: "Crystal Maiden",     pickrate: 10.8, winrate: 50.5 },
   { name: "npc_dota_hero_axe",              localized_name: "Axe",               pickrate: 10.4, winrate: 51.8 },
@@ -200,7 +200,7 @@ const metaHeroesMock = [
 const metaItemsMock = [
   { id: "black_king_bar",        name: "Black King Bar",        pickrate: 42.1, winrate: 56.3 },
   { id: "blink",                 name: "Blink Dagger",         pickrate: 38.7, winrate: 53.8 },
-  { id: "aghanims_scepter",      name: "Aghanim's Scepter",   pickrate: 35.2, winrate: 54.1 },
+  { id: "ultimate_scepter",      name: "Aghanim's Scepter",   pickrate: 35.2, winrate: 54.1 },
   { id: "manta",                name: "Manta Style",          pickrate: 28.9, winrate: 55.7 },
   { id: "desolator",            name: "Desolator",           pickrate: 26.4, winrate: 54.9 },
   { id: "silver_edge",           name: "Silver Edge",          pickrate: 24.1, winrate: 53.2 },
@@ -212,14 +212,14 @@ const metaItemsMock = [
 
 const metaItemsTopMock = [
   { hero: "Spirit Breaker", item: "Black King Bar",       pickrate: 68.2, winrate: 58.9 },
-  { hero: "Beastmaster",   item: "Aghanim's Scepter",   pickrate: 72.1, winrate: 60.2 },
+  { hero: "Beastmaster",   item: "ultimate_scepter",   pickrate: 72.1, winrate: 60.2 },
   { hero: "Muerta",       item: "Desolator",           pickrate: 65.4, winrate: 57.8 },
   { hero: "Shadow Fiend",  item: "Black King Bar",       pickrate: 70.1, winrate: 56.5 },
   { hero: "Phantom Assassin", item: "Desolator",         pickrate: 74.3, winrate: 59.1 },
-  { hero: "Lina",        item: "Eul's Scepter",       pickrate: 62.8, winrate: 55.9 },
-  { hero: "Terrorblade",   item: "Manta Style",          pickrate: 81.2, winrate: 61.3 },
+  { hero: "Lina",        item: "cyclone",       pickrate: 62.8, winrate: 55.9 },
+  { hero: "Terrorblade",   item: "Manta",          pickrate: 81.2, winrate: 61.3 },
   { hero: "Windranger",   item: "Maelstrom",           pickrate: 58.7, winrate: 54.2 },
-  { hero: "Invoker",       item: "Aghanim's Scepter",   pickrate: 69.5, winrate: 57.8 },
+  { hero: "Invoker",       item: "ultimate_scepter",   pickrate: 69.5, winrate: 57.8 },
   { hero: "Spectre",      item: "Radiance",            pickrate: 55.1, winrate: 58.6 }
 ];
 
@@ -249,7 +249,7 @@ function cargarMetaHeroes() {
         <td style="color:#a8dadc">${h.pickrate}%</td>
         <td style="color:#4ade80;font-weight:bold">${h.winrate}%</td>
         <td style="color:${sube?'#4ade80':'#f87171'}">${sube?'+' : ''}${cambio}%</td>
-        <td style="font-size:1.6rem">${sube ? 'Up Arrow' : 'Down Arrow'}</td>
+        <td style="font-size:1.6rem">${sube ? '📉' : '📈'}</td>
       </tr>`;
   });
 }
@@ -273,7 +273,7 @@ function cargarMetaItems() {
         <td style="color:#a8dadc">${item.pickrate}%</td>
         <td style="color:#4ade80;font-weight:bold">${item.winrate}%</td>
         <td style="color:${sube?'#4ade80':'#f87171'}">${sube?'+' : ''}${cambio}%</td>
-        <td style="font-size:1.6rem">${sube ? 'Up Arrow' : 'Down Arrow'}</td>
+        <td style="font-size:1.6rem">${sube ? '📉' : '📈'}</td>
       </tr>`;
   });
 }
