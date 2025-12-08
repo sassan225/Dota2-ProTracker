@@ -161,3 +161,93 @@ document.addEventListener("DOMContentLoaded", function() {
   .catch(err => console.error("Error cargando ranking:", err));
 
 });
+//Script para login y sign up
+// selectors
+var overlay = document.getElementById('modal-overlay');
+var modalLogin = document.getElementById('modal-login');
+var modalSignup = document.getElementById('modal-signup');
+var loginBtn = document.querySelectorAll('.login-btn'); // puede haber varios
+var signupBtn = document.querySelectorAll('.signup-btn');
+var closeBtns = document.querySelectorAll('[data-close]');
+var switchers = document.querySelectorAll('[data-switch]');
+
+// util: abrir modal
+function openModal(modalEl) {
+  overlay.classList.add('active');
+  overlay.classList.remove('hidden');
+  modalEl.classList.add('active');
+  modalEl.classList.remove('hidden');
+  document.body.style.overflow = 'hidden'; // bloquea scroll
+  modalEl.setAttribute('aria-hidden', 'false');
+}
+
+// util: cerrar todo
+function closeModals() {
+  overlay.classList.remove('active');
+  overlay.classList.add('hidden');
+  [modalLogin, modalSignup].forEach(function(m){
+    m.classList.remove('active');
+    m.classList.add('hidden');
+    if (m) m.setAttribute('aria-hidden', 'true');
+  });
+  document.body.style.overflow = '';
+}
+
+// event: abrir login
+loginBtn.forEach(function(btn){
+  btn.addEventListener('click', function(){
+    openModal(modalLogin);
+  });
+});
+
+// event: abrir signup
+signupBtn.forEach(function(btn){
+  btn.addEventListener('click', function(){
+    openModal(modalSignup);
+  });
+});
+
+// close buttons (x)
+closeBtns.forEach(function(btn){
+  btn.addEventListener('click', function(e){
+    closeModals();
+  });
+});
+
+// overlay click closes
+overlay.addEventListener('click', function(){
+  closeModals();
+});
+
+// ESC key closes
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') closeModals();
+});
+
+// switch between modals (ej: "crear cuenta" en login)
+switchers.forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var target = btn.getAttribute('data-switch');
+    if (target === 'signup') {
+      modalLogin.classList.remove('active'); modalLogin.classList.add('hidden');
+      modalSignup.classList.remove('hidden'); modalSignup.classList.add('active');
+    } else if (target === 'login') {
+      modalSignup.classList.remove('active'); modalSignup.classList.add('hidden');
+      modalLogin.classList.remove('hidden'); modalLogin.classList.add('active');
+    }
+  });
+});
+
+// small form handlers (placeholder behavior)
+// evita recarga y muestra mensaje simulado
+document.getElementById('login-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  // aquí agregarías llamada real a tu backend
+  alert('Login simulado. Implementa auth real en backend.');
+  closeModals();
+});
+document.getElementById('signup-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  alert('Signup simulado. Implementa registro real en backend.');
+  closeModals();
+});
