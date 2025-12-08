@@ -135,32 +135,62 @@ document.addEventListener("DOMContentLoaded", function() {
     .catch(err => console.error("Error cargando videos:", err));
 
   // --------------------- RANKING JUGADORES (Stratz) ---------------------
-  const STRATZ_KEY = "TOKEN";
-  fetch("https://api.stratz.com/api/v1/rankings/leaders", {
-    headers: { "Authorization": `Bearer ${STRATZ_KEY}` }
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (!data.entries || !Array.isArray(data.entries)) return;
-    const top = data.entries.slice(0,10);
-    const container = document.getElementById("players-container");
-    container.innerHTML = "";
-    top.forEach(p => {
-      const row = document.createElement("div");
-      row.classList.add("ranking-row");
-      row.innerHTML = `
-        <div class="col">${p.name || "Unknown"}</div>
-        <div class="col">${p.rankLeaderboardRank || "-"}</div>
-        <div class="col">${p.rating || "-"}</div>
-        <div class="col">${(p.winRate*100).toFixed(1)}%</div>
-        <div class="col">${p.matchCount}</div>
-      `;
-      container.appendChild(row);
-    });
-  })
-  .catch(err => console.error("Error cargando ranking:", err));
+ const container = document.getElementById("players-container");
 
+// Datos de ejemplo mientras carga la API
+const topPlayersMock = [
+  { name: "SMASH 🥇", rankLeaderboardRank: 1, rating: 9500, winRate: 0.75, matchCount: 1200 },
+  { name: "WISPER 🥈", rankLeaderboardRank: 2, rating: 9400, winRate: 0.72, matchCount: 1180 },
+  { name: "ANA    🥉", rankLeaderboardRank: 3, rating: 9300, winRate: 0.70, matchCount: 1150 },
+  { name: "STRIKER", rankLeaderboardRank: 4, rating: 9200, winRate: 0.68, matchCount: 1120 },
+  { name: "PHOENIX", rankLeaderboardRank: 5, rating: 9100, winRate: 0.66, matchCount: 1100 },
+  { name: "BLITZ", rankLeaderboardRank: 6, rating: 9050, winRate: 0.65, matchCount: 1080 },
+  { name: "NOVA", rankLeaderboardRank: 7, rating: 9000, winRate: 0.64, matchCount: 1065 },
+  { name: "SHADOW", rankLeaderboardRank: 8, rating: 8950, winRate: 0.63, matchCount: 1050 },
+  { name: "FROST", rankLeaderboardRank: 9, rating: 8900, winRate: 0.62, matchCount: 1030 },
+  { name: "VORTEX", rankLeaderboardRank: 10, rating: 8850, winRate: 0.61, matchCount: 1020 }
+];
+
+container.innerHTML = "";
+topPlayersMock.forEach(p => {
+  const row = document.createElement("div");
+  row.classList.add("ranking-row");
+  row.innerHTML = `
+    <div class="col">${p.name}</div>
+    <div class="col">${p.rankLeaderboardRank}</div>
+    <div class="col">${p.rating}</div>
+    <div class="col">${(p.winRate*100).toFixed(1)}%</div>
+    <div class="col">${p.matchCount}</div>
+  `;
+  container.appendChild(row);
 });
+
+// Luego hacemos la llamada real
+const STRATZ_KEY = "TOKEN";
+fetch("https://api.stratz.com/api/v1/rankings/leaders", {
+  headers: { "Authorization": `Bearer ${STRATZ_KEY}` }
+})
+.then(res => res.json())
+.then(data => {
+  if (!data.entries || !Array.isArray(data.entries)) return;
+  const top = data.entries.slice(0,10);
+  container.innerHTML = ""; // reemplaza el mock con la API
+  top.forEach(p => {
+    const row = document.createElement("div");
+    row.classList.add("ranking-row");
+    row.innerHTML = `
+      <div class="col">${p.name || "Unknown"}</div>
+      <div class="col">${p.rankLeaderboardRank || "-"}</div>
+      <div class="col">${p.rating || "-"}</div>
+      <div class="col">${(p.winRate*100).toFixed(1)}%</div>
+      <div class="col">${p.matchCount}</div>
+    `;
+    container.appendChild(row);
+  });
+})
+.catch(err => console.error("Error cargando ranking:", err));
+
+
 //Script para login y sign up
 // selectors
 var overlay = document.getElementById('modal-overlay');
@@ -242,12 +272,13 @@ switchers.forEach(function(btn){
 // evita recarga y muestra mensaje simulado
 document.getElementById('login-form').addEventListener('submit', function(e){
   e.preventDefault();
-  // aquí agregarías llamada real a tu backend
-  alert('Login simulado. Implementa auth real en backend.');
+ 
+  alert('Login simulado.');
   closeModals();
 });
 document.getElementById('signup-form').addEventListener('submit', function(e){
   e.preventDefault();
-  alert('Signup simulado. Implementa registro real en backend.');
+  alert('Signup simulado.');
   closeModals();
 });
+})

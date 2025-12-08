@@ -466,3 +466,93 @@ footer {
 
 /* make header buttons show pointer cursor (you asked) */
 .login-btn, .signup-btn, #search-btn, .menu-left li { cursor: pointer; }
+/*CSS PARA LOS PROPLAYERRS*/
+
+/* Ranking jugadores */
+#players-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+/* Cada fila del ranking */
+.ranking-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr; /* nombre, rank, rating, winrate, partidas */
+  background: linear-gradient(145deg, #2c2c2c, #3a3a3a);
+  border-radius: 10px;
+  padding: 10px 15px;
+  align-items: center;
+  color: #f1faee;
+  font-size: 14px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.ranking-row:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.7);
+  background: linear-gradient(145deg, #3a3a3a, #2c2c2c);
+}
+
+/* Columnas */
+.ranking-row .col {
+  text-align: center;
+}
+
+/* Primera columna (nombre del jugador) alineada a la izquierda */
+.ranking-row .col:first-child {
+  text-align: left;
+  font-weight: 600;
+  color: #e63946; /* rojo destacado para los nombres */
+}
+
+/* Headers si quieres agregarlo */
+#player-ranking h2 {
+  margin-bottom: 10px;
+  color: #e63946;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+/* Responsive */
+@media(max-width: 600px){
+  .ranking-row {
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 5px;
+    font-size: 12px;
+  }
+  .ranking-row .col:nth-child(4), 
+  .ranking-row .col:nth-child(5){
+    display: none; /* oculta winrate y partidas en móvil */
+  }
+}
+/* Cabecera del ranking alineada con las filas */
+.ranking-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr; /* ahora tiene 5 columnas */
+  background: #1b1b1b;
+  border-radius: 10px;
+  padding: 10px 15px;
+  font-weight: 700;
+  color: #e63946;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.ranking-header .col:first-child {
+  text-align: left;
+}
+
+/* Responsive */
+@media(max-width: 600px){
+  .ranking-header {
+    grid-template-columns: 2fr 1fr 1fr; /* mismo responsive que filas */
+  }
+  .ranking-header .col:nth-child(4),
+  .ranking-header .col:nth-child(5){
+    display: none;
+  }
+}
+
