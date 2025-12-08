@@ -10,7 +10,7 @@ El objetivo es dejar registro detallado del funcionamiento del sitio, facilitand
 
 ## 2. Tecnologías Utilizadas
 
-### 🔹 Frontend
+### Frontend
 - **HTML5**
 - **CSS3** (un solo archivo: `styles.css`)
 - **JavaScript Vanilla (ES6)** — sin frameworks, sin librerías externas.
@@ -20,7 +20,7 @@ El objetivo es dejar registro detallado del funcionamiento del sitio, facilitand
 
 ---
 
-### 🔹 APIs Integradas
+###  APIs Integradas
 - **OpenDota API**  
   Usada para estadísticas de héroes, meta, rankings y datos generales.
 
