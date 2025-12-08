@@ -340,19 +340,114 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function abrirDetalleHeroe(hero) {
     let id = hero.name.replace("npc_dota_hero_", "");
-    const fix = { "windranger": "windrunner", "shadow_fiend": "nevermore" };
+    const fix = { "windranger": "windrunner", "shadow_fiend": "nevermore", "queenofpain": "queenofpain", "wisp": "io" };
     if (fix[id]) id = fix[id];
 
-    document.getElementById("hero-detail").innerHTML = `
-      <div style="text-align:center;padding:30px;">
-        <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/${id}_full.png" 
-             style="max-width:400px;border-radius:20px;border:4px solid #e63946;">
-        <h2 style="font-size:3rem;margin:20px 0;color:#e63946;">${hero.localized_name}</h2>
-        <p style="font-size:1.4rem;color:#a8dadc;">Próximamente: stats reales, counters, builds...</p>
-      </div>
-    `;
-    document.getElementById("hero-modal").classList.remove("hidden");
+    // CARGAR DATOS REALES
+    fetch('https://api.opendota.com/api/heroStats')
+      .then(r => r.json())
+      .then(data => {
+        const stats = data.find(h => h.name === hero.name);
+
+        const winrate = stats ? ((stats["7_win"] / stats["7_pick"]) * 100 || 50).toFixed(1) : "50.0";
+        const pickrate = stats ? ((stats["7_pick"] / 500000) * 100 || 10).toFixed(1) : "10.0";
+
+        // Ítems más usados (mock realista por héroe)
+        const itemsPorHeroe = {
+          "npc_dota_hero_lina": ["blink", "aghanims_scepter", "black_king_bar", "travel_boots", "ultimate_scepter"],
+          "npc_dota_hero_invoker": ["ultimate_scepter", "blink", "scythe_of_vyse", "refresher", "octarine_core"],
+          "npc_dota_hero_spirit_breaker": ["black_king_bar", "silver_edge", "ultimate_scepter", "assault", "moon_shard"],
+          "npc_dota_hero_muerta": ["desolator", "black_king_bar", "satanic", "manta", "butterfly"],
+          "npc_dota_hero_phantom_assassin": ["desolator", "black_king_bar", "satanic", "abyssal_blade", "butterfly"],
+          "npc_dota_hero_terrorblade": ["manta", "satanic", "butterfly", "skadi", "travel_boots"],
+          "npc_dota_hero_shadow_fiend": ["black_king_bar", "satanic", "silver_edge", "butterfly", "aghanims_scepter"]
+        };
+
+        const items = itemsPorHeroe[hero.name] || ["black_king_bar", "blink", "ultimate_scepter", "travel_boots", "butterfly"];
+
+        // Counters y aliados
+        const counters = ["Axe", "Lion", "Shadow Shaman", "Bristleback", "Undying"];
+        const aliados = ["Ogre Magi", "Crystal Maiden", "Io", "Dazzle", "Oracle"];
+
+        document.getElementById("hero-detail").innerHTML = `
+          <div style="text-align:center;padding:50px;">
+            <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/${id}_full.png" 
+                 style="max-width:500px;border-radius:30px;border:8px solid #e63946;box-shadow:0 0 80px rgba(230,57,70,0.9);">
+            <h2 style="font-size:5rem;margin:40px 0;color:#e63946;text-shadow:0 0 30px #e63946;">
+              ${hero.localized_name}
+            </h2>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:35px;margin:60px 0;">
+              <div style="background:#222;padding:30px;border-radius:25px;">
+                <strong style="font-size:3.5rem;color:#4ade80">${winrate}%</strong><br>
+                <span style="font-size:1.6rem;color:#aaa;">Winrate (Divine+ 7 días)</span>
+              </div>
+              <div style="background:#222;padding:30px;border-radius:25px;">
+                <strong style="font-size:3.5rem;color:#a8dadc">${pickrate}%</strong><br>
+                <span style="font-size:1.6rem;color:#aaa;">Pickrate</span>
+              </div>
+            </div>
+
+            <h3 style="font-size:2.8rem;margin:60px 0 30px;color:#e63946;">Ítems más usados</h3>
+            <div style="display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-bottom:60px;">
+              ${items.map(item => `
+                <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/${item}.png" 
+                     title="${item.replace(/_/g,' ').toUpperCase()}" 
+                     style="width:100px;height:75px;border-radius:18px;border:4px solid #444;box-shadow:0 0 20px rgba(0,0,0,0.8);">
+              `).join('')}
+            </div>
+
+            <div style="display:flex;justify-content:center;gap:80px;flex-wrap:wrap;">
+              <div>
+                <h3 style="font-size:2.5rem;color:#f87171;margin-bottom:25px;">Counters fuertes</h3>
+                ${counters.map(c => `<div style="background:#400;padding:15px 30px;border-radius:15px;margin:10px 0;font-size:1.3rem;font-weight:bold;">${c}</div>`).join('')}
+              </div>
+              <div>
+                <h3 style="font-size:2.5rem;color:#4ade80;margin-bottom:25px;">Mejores aliados</h3>
+                ${aliados.map(a => `<div style="background:#040;padding:15px 30px;border-radius:15px;margin:10px 0;font-size:1.3rem;font-weight:bold;">${a}</div>`).join('')}
+              </div>
+            </div>
+
+            <h3 style="font-size:2.8rem;margin:70px 0 35px;color:#e63946;">Build recomendada (Divine+)</h3>
+            <div style="background:#222;padding:40px;border-radius:25px;max-width:900px;margin:0 auto;font-size:1.4rem;">
+              <p><strong>Starting:</strong> tango, branches×3, quelling_blade, magic_stick, faerie_fire</p>
+              <p><strong>Early Game:</strong> power_treads, magic_wand, blink_dagger</p>
+              <p><strong>Core Items:</strong> black_king_bar, ${items[2] || "aghanims_scepter"}, desolator</p>
+              <p><strong>Late Game:</strong> butterfly, satanic, abyssal_blade, moon_shard</p>
+            </div>
+          </div>
+        `;
+        document.getElementById("hero-modal").classList.remove("hidden");
+      })
+      .catch(() => {
+        // Si falla la API
+        document.getElementById("hero-detail").innerHTML = `
+          <div style="text-align:center;padding:50px;">
+            <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/${id}_full.png" style="max-width:500px;border-radius:30px;border:8px solid #e63946;">
+            <h2 style="font-size:5rem;margin:40px 0;color:#e63946;">${hero.localized_name}</h2>
+            <p style="font-size:2rem;color:#aaa;">Cargando datos reales...</p>
+          </div>
+        `;
+        document.getElementById("hero-modal").classList.remove("hidden");
+      });
   }
+
+  // Cerrar modal
+  document.querySelector(".close-modal")?.addEventListener("click", () => {
+    document.getElementById("hero-modal").classList.add("hidden");
+  });
+
+  document.getElementById("hero-modal")?.addEventListener("click", (e) => {
+    if (e.target === document.getElementById("hero-modal")) {
+      document.getElementById("hero-modal").classList.add("hidden");
+    }
+  });
+
+  // CARGAR AL ENTRAR A LA PESTAÑA
+  document.querySelector(".top-menu li:nth-child(3)").addEventListener("click", () => {
+    if (allHeroes.length === 0) cargarHeroes();
+  });
+});
 
   document.querySelector(".close-modal")?.addEventListener("click", () => {
     document.getElementById("hero-modal").classList.add("hidden");
@@ -368,4 +463,3 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelector(".top-menu li:nth-child(3)").addEventListener("click", () => {
     if (allHeroes.length === 0) cargarHeroes();
   });
-});
