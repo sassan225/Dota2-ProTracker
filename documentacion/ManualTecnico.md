@@ -6,7 +6,7 @@ El presente documento describe la arquitectura interna, tecnologías empleadas, 
 
 El objetivo es dejar registro detallado del funcionamiento del sitio, facilitando su mantenimiento y futuras mejoras, tales como modularización, autenticación real o integración con frameworks modernos.
 
----
+
 
 ## 2. Tecnologías Utilizadas
 
@@ -18,7 +18,7 @@ El objetivo es dejar registro detallado del funcionamiento del sitio, facilitand
 > No se utilizaron frameworks como React, Angular, Vue, ni preprocesadores como Sass.  
 > Tampoco se usó Node.js, Webpack ni herramientas de bundling.
 
----
+
 
 ###  APIs Integradas
 - **OpenDota API**  
@@ -32,7 +32,7 @@ El objetivo es dejar registro detallado del funcionamiento del sitio, facilitand
 
 > Se evaluó usar una API informativa de terceros que requería 7 días de aprobación, pero se descartó por limitaciones de tiempo académico.
 
----
+
 
 ## 3. Estructura del Proyecto
 
@@ -71,7 +71,7 @@ Por ello se optó por una estructura **simple y totalmente funcional**, con:
 - **Un solo CSS**
 - **Un solo JS**
 
----
+
 
 ## 4. Descripción Técnica del Funcionamiento
 
@@ -111,7 +111,6 @@ Incluye estilos para:
 - Estilos responsive básicos
 
 
----
 
 ### 4.3 JavaScript — `/js/script.js`
 
