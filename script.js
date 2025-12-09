@@ -140,6 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
     { name: "FROST", rankLeaderboardRank: 9, rating: 8900, winRate: 0.62, matchCount: 1030 },
     { name: "VORTEX", rankLeaderboardRank: 10, rating: 8850, winRate: 0.61, matchCount: 1020 }
   ];
+  
 
   container.innerHTML = "";
   topPlayersMock.forEach(p => {
@@ -153,6 +154,29 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="col">${p.matchCount}</div>
     `;
     container.appendChild(row);
+  });
+
+  //Api de yotube para los videos de dota 2
+
+const API_KEY = "AIzaSyDTSu6h1nJTFRxOD63OFX2rGpanOHb73SM";
+const query = "Dota 2";
+const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&maxResults=6&key=${API_KEY}`;
+
+fetch(url)
+  .then(res => res.json())
+  .then(data => {
+    const container = document.getElementById("videos-container");
+    data.items.forEach(video => {
+      const videoDiv = document.createElement("div");
+      videoDiv.classList.add("video-card");
+      videoDiv.innerHTML = `
+        <a href="https://www.youtube.com/watch?v=${video.id.videoId}" target="_blank">
+          <img src="${video.snippet.thumbnails.medium.url}" alt="${video.snippet.title}">
+          <h4>${video.snippet.title}</h4>
+        </a>
+      `;
+      container.appendChild(videoDiv);
+    });
   });
 
   // --------------------- LOGIN / SIGNUP MODALS ---------------------
