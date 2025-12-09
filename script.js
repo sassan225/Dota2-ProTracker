@@ -523,7 +523,7 @@ function cargarJugadores() {
 
     card.innerHTML = `
       <div class="rank-badge">#${player.rank}</div>
-      <img src="/imagenes/jugadores/${fotoNombre}.jpg" 
+      <img src="./imagenes/jugadores/${fotoNombre}.jpg" 
            alt="${player.name}"
            onerror="this.src='https://i.imgur.com/6mF9b8v.jpg'">
 
