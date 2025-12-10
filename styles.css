@@ -178,13 +178,13 @@ html, body {
 .search-container {
   display: flex;
   align-items: center;
-  flex-grow: 1;           /* ¡esto es clave! */
-  max-width: 600px;       /* opcional: no la dejes infinita */
+  flex-grow: 1;          
+  max-width: 600px;       
   gap: 8px;
 }
 
 #player-search {
-  flex-grow: 1;           /* el input crece */
+  flex-grow: 1;        
   padding: 10px 16px;
   border-radius: 8px 0 0 8px;
   border: none;
@@ -452,8 +452,7 @@ footer {
   margin: 5px;
   color: #f1faee;
 }
-/*CARRUSEL DE FRASES DE DOTA 2*/
-/* Contenedor del carrusel de frases */
+
 /* --- CARRUSEL DE FRASES EPICO --- */
 #text-carousel {
   width: 100%;
@@ -463,23 +462,51 @@ footer {
   align-items: center;
   overflow: hidden;
   position: relative;
+  min-height: 140px; /* evita que se achique demasiado cuando no hay texto */
 }
 
 /* Texto grande tipo tráiler */
 .text-slide {
-  font-size: 3.2rem;        /* TAMAÑO DE LETRA GRANDE */
-  font-weight: 900;         /* MUY NEGRITA */
-  color: #e63946;    
-  text-shadow: 0 4px 10px rgba(0,0,0,0.7); /* Glow oscuro */
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: #e63946;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.7);
   opacity: 0;
   position: absolute;
   text-align: center;
   width: 90%;
+  max-width: 1200px;      /* evita que sea demasiado ancho en pantallas grandes */
+  line-height: 1.2;       /* mejora la legibilidad */
   transition: opacity 1.3s ease-in-out;
+  padding: 0 20px;        /* espacio lateral para que no toque los bordes */
+  box-sizing: border-box;
 }
 
 .text-slide.active {
   opacity: 1;
+}
+
+/* Responsive - ajustamos el tamaño del texto en pantallas más pequeñas */
+@media (max-width: 1024px) {
+  .text-slide {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .text-slide {
+    font-size: 2.2rem;
+    line-height: 1.3;
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-slide {
+    font-size: 1.8rem;
+    line-height: 1.35;
+    padding: 0 10px;
+  }
 }
 
 
