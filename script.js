@@ -93,6 +93,134 @@ if (hamburger && mobileMenu) {
   });
 }
 
+// --------------------- LOGIN / SIGNUP CON AUTO-LOGIN Y MENÚ DE USUARIO ---------------------
+
+function loginUser(username) {
+  localStorage.setItem('loggedInUser', username);
+  updateAuthUI();
+}
+
+function logoutUser() {
+  localStorage.removeItem('loggedInUser');
+  updateAuthUI();
+}
+
+function updateAuthUI() {
+  const loggedUser = localStorage.getItem('loggedInUser');
+
+  // Desktop: botón principal (id="btn-login")
+  const desktopLoginBtn = document.getElementById('btn-login');
+  const desktopSignupBtn = document.getElementById('btn-signup');
+
+  // Limpiamos cualquier evento viejo
+  if (desktopLoginBtn) {
+    desktopLoginBtn.onclick = null;
+  }
+
+  if (loggedUser) {
+    if (desktopLoginBtn) {
+      desktopLoginBtn.textContent = loggedUser;
+      desktopLoginBtn.classList.remove('login-btn');
+      desktopLoginBtn.classList.add('user-btn');
+      // Evento que abre el menú desplegable
+      desktopLoginBtn.onclick = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const dropdown = document.getElementById('user-dropdown');
+        if (dropdown) dropdown.classList.toggle('hidden');
+      };
+    }
+    if (desktopSignupBtn) desktopSignupBtn.style.display = 'none';
+  } else {
+    if (desktopLoginBtn) {
+      desktopLoginBtn.textContent = 'Log In';
+      desktopLoginBtn.classList.add('login-btn');
+      desktopLoginBtn.classList.remove('user-btn');
+      desktopLoginBtn.onclick = () => openModal(modalLogin);
+    }
+    if (desktopSignupBtn) desktopSignupBtn.style.display = 'inline-block';
+  }
+
+  // Menú desplegable desktop
+  const userDropdown = document.getElementById('user-dropdown');
+  const logoutBtn = document.getElementById('logout-btn');
+  if (logoutBtn) {
+    logoutBtn.onclick = function() {
+      logoutUser();
+      if (userDropdown) userDropdown.classList.add('hidden');
+    };
+  }
+
+  // Móvil
+  const mobileUserSection = document.getElementById('mobile-user-section');
+  const mobileUsername = document.getElementById('mobile-username');
+  const mobileLogout = document.getElementById('mobile-logout');
+  const mobileLoginBtn = document.getElementById('mobile-login');
+  const mobileSignupBtn = document.getElementById('mobile-signup');
+
+  if (loggedUser) {
+    if (mobileUserSection) {
+      mobileUserSection.classList.remove('hidden');
+      if (mobileUsername) mobileUsername.textContent = loggedUser;
+      if (mobileLogout) mobileLogout.onclick = logoutUser;
+    }
+    if (mobileLoginBtn) mobileLoginBtn.style.display = 'none';
+    if (mobileSignupBtn) mobileSignupBtn.style.display = 'none';
+  } else {
+    if (mobileUserSection) mobileUserSection.classList.add('hidden');
+    if (mobileLoginBtn) mobileLoginBtn.style.display = 'block';
+    if (mobileSignupBtn) mobileSignupBtn.style.display = 'block';
+  }
+
+  // Cerrar menú desplegable al clic fuera
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.user-btn') && !e.target.closest('#user-dropdown')) {
+      document.getElementById('user-dropdown')?.classList.add('hidden');
+    }
+  });
+}
+
+// Sign Up (auto-login)
+document.getElementById('signup-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const username = e.target.username.value.trim();
+  const email = e.target.email.value.trim();
+  const password = e.target.password.value;
+
+  if (username && email && password.length >= 6) {
+    localStorage.setItem('user_' + username, JSON.stringify({ email, password }));
+    loginUser(username);
+    alert('¡Cuenta creada! Ya estás logueado como ' + username);
+    closeModals();
+  } else {
+    alert('Por favor completa todos los campos correctamente.');
+  }
+});
+
+// Log In
+document.getElementById('login-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const userInput = e.target.user.value.trim();
+  const password = e.target.password.value;
+
+  const stored = localStorage.getItem('user_' + userInput);
+  if (stored) {
+    const userData = JSON.parse(stored);
+    if (userData.password === password) {
+      loginUser(userInput);
+      alert('¡Bienvenido de nuevo, ' + userInput + '!');
+      closeModals();
+    } else {
+      alert('Contraseña incorrecta.');
+    }
+  } else {
+    alert('Usuario no encontrado.');
+  }
+});
+
+// Actualizar UI al cargar y al cambiar tamaño de ventana
+updateAuthUI();
+window.addEventListener('resize', updateAuthUI);
     
 
     // HOME al cargar
@@ -242,26 +370,77 @@ if (hamburger && mobileMenu) {
       });
     });
 
-    // --------------------- LOGIN / SIGNUP MODALS ---------------------
-    var overlay = document.getElementById('modal-overlay');
-    var modalLogin = document.getElementById('modal-login');
-    var modalSignup = document.getElementById('modal-signup');
-    var loginBtn = document.querySelectorAll('.login-btn');
-    var signupBtn = document.querySelectorAll('.signup-btn');
-    var closeBtns = document.querySelectorAll('[data-close]');
-    var switchers = document.querySelectorAll('[data-switch]');
-    function openModal(modalEl) { overlay.classList.add('active'); overlay.classList.remove('hidden'); modalEl.classList.add('active'); modalEl.classList.remove('hidden'); document.body.style.overflow = 'hidden'; modalEl.setAttribute('aria-hidden', 'false'); }
-    function closeModals() { overlay.classList.remove('active'); overlay.classList.add('hidden'); [modalLogin, modalSignup].forEach(m=>{ m.classList.remove('active'); m.classList.add('hidden'); if(m) m.setAttribute('aria-hidden','true'); }); document.body.style.overflow = ''; }
-    loginBtn.forEach(btn=>btn.addEventListener('click',()=>openModal(modalLogin)));
-    signupBtn.forEach(btn=>btn.addEventListener('click',()=>openModal(modalSignup)));
-    closeBtns.forEach(btn=>btn.addEventListener('click',()=>closeModals()));
-    overlay.addEventListener('click',()=>closeModals());
-    document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModals(); });
-    switchers.forEach(btn=>btn.addEventListener('click',()=>{ var target=btn.getAttribute('data-switch'); if(target==='signup'){ modalLogin.classList.remove('active'); modalLogin.classList.add('hidden'); modalSignup.classList.remove('hidden'); modalSignup.classList.add('active'); } else if(target==='login'){ modalSignup.classList.remove('active'); modalSignup.classList.add('hidden'); modalLogin.classList.remove('hidden'); modalLogin.classList.add('active'); } }));
+   // --------------------- LOGIN / SIGNUP MODALS (funciones básicas) ---------------------
+const overlay = document.getElementById('modal-overlay');
+const modalLogin = document.getElementById('modal-login');
+const modalSignup = document.getElementById('modal-signup');
 
-    document.getElementById('login-form').addEventListener('submit', e=>{ e.preventDefault(); alert('Login simulado.'); closeModals(); });
-    document.getElementById('signup-form').addEventListener('submit', e=>{ e.preventDefault(); alert('Signup simulado.'); closeModals(); });
+// Función para abrir modal
+function openModal(modalEl) {
+  overlay.classList.add('active');
+  overlay.classList.remove('hidden');
+  modalEl.classList.add('active');
+  modalEl.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
 
+// Cerrar modal
+function closeModals() {
+  overlay.classList.remove('active');
+  overlay.classList.add('hidden');
+  modalLogin.classList.remove('active');
+  modalLogin.classList.add('hidden');
+  modalSignup.classList.remove('active');
+  modalSignup.classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+// Cerrar con botón X, clic fuera o Escape
+document.querySelectorAll('[data-close]').forEach(btn => btn.addEventListener('click', closeModals));
+overlay.addEventListener('click', closeModals);
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModals();
+});
+
+// Cambiar entre login y signup
+document.querySelectorAll('[data-switch]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.getAttribute('data-switch');
+    if (target === 'signup') {
+      modalLogin.classList.remove('active');
+      modalLogin.classList.add('hidden');
+      modalSignup.classList.remove('hidden');
+      modalSignup.classList.add('active');
+    } else if (target === 'login') {
+      modalSignup.classList.remove('active');
+      modalSignup.classList.add('hidden');
+      modalLogin.classList.remove('hidden');
+      modalLogin.classList.add('active');
+    }
+  });
+});
+
+// Abrir modales desde TODOS los botones (barra superior + menú móvil)
+document.querySelectorAll('.login-btn').forEach(btn => {
+  btn.addEventListener('click', () => openModal(modalLogin));
+});
+
+document.querySelectorAll('.signup-btn').forEach(btn => {
+  btn.addEventListener('click', () => openModal(modalSignup));
+});
+
+// Submit simulado
+document.getElementById('login-form').addEventListener('submit', e => {
+  e.preventDefault();
+  alert('Login simulado.');
+  closeModals();
+});
+
+document.getElementById('signup-form').addEventListener('submit', e => {
+  e.preventDefault();
+  alert('Signup simulado.');
+  closeModals();
+});
     // ---------------------  VECTORES DE META ---------------------
     const metaHeroesMock = [
       { name: "npc_dota_hero_spirit_breaker",    localized_name: "Spirit Breaker",    pickrate: 18.4, winrate: 54.8 },

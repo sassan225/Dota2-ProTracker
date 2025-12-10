@@ -1,17 +1,17 @@
-  <!DOCTYPE html>
-  <html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dota 2 ProTracker</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="logos/logodota.jpg" type="image/jpeg">
-  </head>
-  <body>
-    <div class="wrapper">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dota 2 ProTracker</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="logos/logodota.jpg" type="image/jpeg">
+</head>
+<body>
+  <div class="wrapper">
 
-     <nav class="top-menu">
-  <!-- Izquierda: ítems del menú -->
+    <nav class="top-menu">
+  <!-- Izquierda -->
   <div class="menu-left">
     <ul>
       <li class="active">Home</li>
@@ -21,27 +21,41 @@
     </ul>
   </div>
 
-  <!-- Barra de búsqueda en el medio (ocupa todo el espacio disponible) -->
+  <!-- Barra de búsqueda -->
   <div class="search-container">
     <input type="text" id="player-search" placeholder="Buscar jugador Steam, nombre o ID..." autocomplete="off">
     <button id="search-btn">Buscar</button>
   </div>
 
-  <!-- Derecha: botones y hamburguesa -->
-   <div class="menu-right">
-      <button class="login-btn" id="btn-login">Log In</button>
-      <button class="signup-btn" id="btn-signup">Sign Up</button>
-      <button class="hamburger" id="hamburger-btn">☰</button>
-   </div>
+  <!-- Derecha -->
+  <div class="menu-right">
+    <button class="login-btn" id="btn-login">Log In</button>
+    <button class="signup-btn" id="btn-signup">Sign Up</button>
+    <button class="hamburger" id="hamburger-btn">☰</button>
+  </div>
 
   <!-- Menú móvil -->
   <div class="mobile-menu" id="mobile-menu">
     <a href="#" id="mobile-search">Buscar</a>
+
+    <!-- Usuario logueado en móvil -->
+    <div id="mobile-user-section" class="mobile-user hidden">
+      <span id="mobile-username"></span>
+      <button id="mobile-logout">Cerrar sesión</button>
+    </div>
+
     <button class="login-btn" id="mobile-login">Log In</button>
     <button class="signup-btn" id="mobile-signup">Sign Up</button>
   </div>
-  </nav>
-      <main>
+
+  <!-- Menú desplegable desktop -->
+  <div id="user-dropdown" class="user-dropdown hidden">
+    <div class="dropdown-content">
+      <button id="logout-btn">Cerrar sesión</button>
+    </div>
+  </div>
+</nav>
+    <main>
   <!-- ====================== HOME ====================== -->
   <section id="home">
     <!-- Carrusel de frases -->
@@ -333,6 +347,22 @@
         </form>
       </div>
     </div>
+
+    <!-- Modal de Cerrar Sesión (simple y bonito) -->
+<div id="modal-logout" class="modal hidden" role="dialog" aria-hidden="true">
+  <div class="modal-card">
+    <button class="modal-close" data-close>&times;</button>
+    <div class="modal-header">
+      <h2>Cerrar sesión</h2>
+      <p class="muted">¿Estás seguro que querés cerrar sesión?</p>
+    </div>
+
+    <div class="modal-actions" style="justify-content: center; gap: 20px;">
+      <button class="btn-ghost" data-close>Cancelar</button>
+      <button id="confirm-logout" class="btn-primary">Cerrar sesión</button>
+    </div>
+  </div>
+</div>
 
     <script src="script.js"></script>
   </body>
