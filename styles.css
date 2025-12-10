@@ -6,6 +6,138 @@ html, body {
   background: #1b1b1b;
   color: #f1faee;
 }
+/* ============================================= */
+/* MENÚ HAMBURGUESA - RESPONSIVE */
+/* ============================================= */
+
+/* Botón hamburguesa */
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+/* Menú móvil que se despliega */
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #1a1a1a; /* mismo fondo oscuro que tu nav */
+  flex-direction: column;
+  padding: 1rem 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  z-index: 1000;
+}
+
+.mobile-menu.active {
+  display: flex;
+}
+
+.mobile-menu a,
+.mobile-menu button {
+  color: white;
+  text-decoration: none;
+  padding: 1rem;
+  font-size: 1.1rem;
+  text-align: center;
+  border-bottom: 1px solid #333;
+}
+
+.mobile-menu button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.mobile-menu .login-btn {
+  background: #e63946;
+  border-radius: 5px;
+  margin: 0.5rem 1rem;
+  color: white;
+}
+
+.mobile-menu .signup-btn {
+  background: #1e90ff;
+  border-radius: 5px;
+  margin: 0.5rem 1rem;
+  color: white;
+}
+
+/* Reglas responsive */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  /* Ocultamos lo que no queremos en móvil */
+  .menu-left ul,
+  .menu-right .search-container,
+  .menu-right .login-btn,
+  .menu-right .signup-btn {
+    display: none;
+  }
+
+  .menu-right {
+    margin-left: auto;
+  }
+
+  .top-menu {
+    justify-content: space-between;
+    position: relative;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-menu {
+    display: none !important;
+  }
+}
+/* Barra de búsqueda en móvil (aparece al tocar "Buscar") */
+@media (max-width: 768px) {
+  .search-container {
+    display: none !important;
+  }
+
+  /* Barra que se muestra temporalmente */
+  .search-container.mobile-active {
+    display: flex !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #1a1a1a;
+    padding: 1rem;
+    z-index: 9999;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    animation: slideDown 0.3s ease;
+  }
+
+  .search-container.mobile-active input {
+    flex: 1;
+    margin-right: 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .search-container.mobile-active button {
+    padding: 0.8rem 1.5rem;
+  }
+
+  @keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to   { transform: translateY(0); }
+  }
+}
+
+
+
+
 
 .top-menu {
   display: flex;
@@ -97,6 +229,8 @@ main {
   align-items: center;
   margin: 20px 0;
 }
+
+
 
 /* Menú superior */
 .top-menu {
