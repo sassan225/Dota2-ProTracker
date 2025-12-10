@@ -10,7 +10,8 @@
   <body>
     <div class="wrapper">
 
-      <nav class="top-menu">
+     <nav class="top-menu">
+  <!-- Izquierda: ítems del menú -->
   <div class="menu-left">
     <ul>
       <li class="active">Home</li>
@@ -20,29 +21,26 @@
     </ul>
   </div>
 
-  <div class="menu-right">
-    <!-- Barra de búsqueda (solo se ve en escritorio) -->
-    <div class="search-container">
-      <input type="text" id="player-search" placeholder="Buscar jugador Steam, nombre o ID..." autocomplete="off">
-      <button id="search-btn">Buscar</button>
-    </div>
-
-    <!-- Botones normales (solo en escritorio) -->
-    <button class="login-btn" id="btn-login">Log In</button>
-    <button class="signup-btn" id="btn-signup">Sign Up</button>
-
-    <!-- Botón hamburguesa (solo en móvil) -->
-    <button class="hamburger" id="hamburger-btn">☰</button>
+  <!-- Barra de búsqueda en el medio (ocupa todo el espacio disponible) -->
+  <div class="search-container">
+    <input type="text" id="player-search" placeholder="Buscar jugador Steam, nombre o ID..." autocomplete="off">
+    <button id="search-btn">Buscar</button>
   </div>
 
-  <!-- Menú móvil que se abre al hacer clic -->
+  <!-- Derecha: botones y hamburguesa -->
+   <div class="menu-right">
+      <button class="login-btn" id="btn-login">Log In</button>
+      <button class="signup-btn" id="btn-signup">Sign Up</button>
+      <button class="hamburger" id="hamburger-btn">☰</button>
+   </div>
+
+  <!-- Menú móvil -->
   <div class="mobile-menu" id="mobile-menu">
     <a href="#" id="mobile-search">Buscar</a>
     <button class="login-btn" id="mobile-login">Log In</button>
     <button class="signup-btn" id="mobile-signup">Sign Up</button>
   </div>
-</nav>
-
+  </nav>
       <main>
   <!-- ====================== HOME ====================== -->
   <section id="home">

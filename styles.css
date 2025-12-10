@@ -135,19 +135,18 @@ html, body {
   }
 }
 
-
-
-
-
+/* Menú superior - estructura principal */
 .top-menu {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   background: #2c2c2c;
-  padding: 10px 20px;
-  gap: 10px;
+  padding: 12px 20px;
+  gap: 20px;
+  flex-wrap: nowrap;
 }
 
+/* Izquierda: ítems del menú */
 .menu-left {
   display: flex;
   align-items: center;
@@ -167,6 +166,7 @@ html, body {
   padding: 8px 16px;
   border-radius: 5px;
   transition: 0.3s;
+  white-space: nowrap;
 }
 
 .menu-left li.active,
@@ -174,28 +174,96 @@ html, body {
   background: #e63946;
 }
 
-.menu-right {
+/* Barra de búsqueda - ocupa todo el espacio disponible */
+.search-container {
   display: flex;
   align-items: center;
-  gap: 10px;
-  flex-grow: 1; /* ocupa todo el espacio restante */
+  flex-grow: 1;           /* ¡esto es clave! */
+  max-width: 600px;       /* opcional: no la dejes infinita */
+  gap: 8px;
 }
 
 #player-search {
-  flex-grow: 1; /* ocupa todo el espacio disponible dentro de menu-right */
-  padding: 8px 12px;
-  border-radius: 5px;
+  flex-grow: 1;           /* el input crece */
+  padding: 10px 16px;
+  border-radius: 8px 0 0 8px;
   border: none;
-  font-size: 14px;
+  background: #1b1b1b;
+  color: #f1faee;
+  font-size: 15px;
+  outline: none;
 }
 
 #search-btn {
-  padding: 8px 12px;
-  border-radius: 5px;
+  padding: 10px 20px;
+  border-radius: 0 8px 8px 0;
   background: #e63946;
   color: white;
   border: none;
   cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+#search-btn:hover {
+  background: #d62828;
+}
+
+/* Derecha: botones y hamburguesa */
+.menu-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* Ocultar en móvil lo que no queremos */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .search-container,
+  .menu-right .login-btn,
+  .menu-right .signup-btn {
+    display: none !important;
+  }
+
+  .top-menu {
+    justify-content: space-between;
+    gap: 0;
+  }
+}
+
+/* Barra temporal que aparece al tocar "Buscar" en móvil (ya la tenías) */
+@media (max-width: 768px) {
+  .search-container.mobile-active {
+    display: flex !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #1a1a1a;
+    padding: 1rem;
+    z-index: 9999;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    animation: slideDown 0.3s ease;
+  }
+
+  .search-container.mobile-active input {
+    flex: 1;
+    margin-right: 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .search-container.mobile-active button {
+    padding: 0.8rem 1.5rem;
+  }
+
+  @keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to   { transform: translateY(0); }
+  }
 }
 
 .login-btn, .signup-btn {
